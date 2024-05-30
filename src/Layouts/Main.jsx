@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "../Pages/Home/Home";
 import NavigationBar from "../Components/NavigationBar/NavigationBar";
 import Footer from "../Components/Footer/Footer";

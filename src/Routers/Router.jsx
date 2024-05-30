@@ -11,7 +11,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+          <div className=" bg-gray-50 min-h-[100vh] flex items-center justify-center w-full">
+            <Login></Login>
+          </div>
+        ),
       },
       {
         path: "/register",
