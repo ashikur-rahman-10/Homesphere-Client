@@ -5,7 +5,11 @@ module.exports = {
     'node_modules/react-daisyui/dist/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      gradientColorStopPositions: {
+        33: '33%',
+      }
+    },
   },
   plugins: [require('daisyui')],
 }
