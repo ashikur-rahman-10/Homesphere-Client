@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/abacus-logo.ico";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
 const Footer = () => {
@@ -8,10 +8,10 @@ const Footer = () => {
     <div className="bg-gradient-to-tl from-[#aef7fa] via-white to-white border text-[#626687]">
       <footer className="footer p-10 max-w-7xl mx-auto text-neutral-content">
         <div className="space-y-3">
-          {/* <img className="w-28" src={logo} alt="" /> */}
-          <p className="text-4xl font-mono font-semibold text-accent">
+          <img className="w-40 h-14" src={logo} alt="" />
+          {/* <p className="text-4xl font-mono font-semibold text-accent">
             Abacus Realty
-          </p>
+          </p> */}
           <p className="w-80 text-[#626687]">
             We provide information about properties such as houses, villas and
             apartments to help people find their dream home

@@ -1,120 +1,99 @@
-import logo from "../assets/logo.png"
-import { Link, NavLink, Outlet } from "react-router-dom";
-import {
-    FaBars,
-    FaBook,
-    FaClipboardList,
-    FaHome,
-    FaUserSecret,
-    FaUsers,
-    FaBookOpen,
-    FaWallet,
-} from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
-import CustomLoader from "../Components/CustomLoader/CustomLoader";
-import useAuth from "../Hooks/UseAuth";
-import UseAdmin from "../Hooks/UseAdmin";
-import { BiSolidBookAdd } from "react-icons/bi";
+import React, { useState, useEffect } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { Link, NavLink } from "react-router-dom";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
+import Login from "../../Pages/Login & Register/Login";
+import logo from "../../assets/abacus-logo.ico";
 
 const Dashboard = () => {
-    const { user, loading } = useAuth();
-    if (loading) {
-        return <CustomLoader></CustomLoader>;
-    }
-    const { admin } = UseAdmin();
+  const navOptions = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Dashboard
+        </NavLink>
+      </li>
 
-    let navOptions;
+      <li>
+        <NavLink
+          to="/appartments"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Appartments
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/articles"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Articles
+        </NavLink>
+      </li>
 
-    if (admin) {
-        navOptions = (
-            <>
-                <li>
-                    <Link className={"w-64  mx-auto mb-1"} to={"/dashboard"}>
-                        <FaHome></FaHome> Dashboard
-                    </Link>
-                </li>
-                <li>
-                    <NavLink className={"w-64  mx-auto mb-1"} to={"add-book"}>
-                        <BiSolidBookAdd></BiSolidBookAdd> Add Book
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink className={"w-64  mx-auto"} to={"manage-books"}>
+      <li>
+        <button
+          onClick={() => document.getElementById("my_modal_5").showModal()}
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Logout
+        </button>
+      </li>
+    </>
+  );
 
-                        <FaClipboardList></FaClipboardList> Manage Books
-                    </NavLink>
-                </li>
-            </>
-        );
-    }
-
-
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-    });
-
-    return (
-        <div>
-            <Helmet>
-                <title>Bornomala | Dashboaard</title>
-            </Helmet>
-            <div className="drawer drawer-mobile lg:drawer-open ">
-                <input
-                    id="my-drawer-2"
-                    type="checkbox"
-                    className="drawer-toggle"
-                />
-
-                <label
-                    htmlFor="my-drawer-2"
-                    className="p-3 text-2xl top-0 w-full bg-green-500 opacity-40 absolute z-20 drawer-button lg:hidden"
-                >
-                    <FaBars className="text-white"></FaBars>
-                </label>
-                <div className="drawer-content  lg:pt-0 ">
-                    <Outlet></Outlet>
-                </div>
-                <div className="drawer-side h-screen w-80">
-                    <label
-                        htmlFor="my-drawer-2"
-                        className="drawer-overlay "
-                    ></label>
-                    <ul className="menu  lg:p-4 pt-12  w-80 min-h-full bg-base-200 text-base-content">
-                        <Link to={"/"} className="w-full ml-12 mt-3 mb-6">
-                            <img className="w-28" src={logo} alt="" />
-                        </Link>
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ rotate: 360, scale: 1 }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 260,
-                                damping: 20,
-                            }}
-                        >
-                            {navOptions}
-                        </motion.div>
-                        <div className="w-full border-b-4 my-10"></div>
-                        <li>
-                            <NavLink className={"w-64  mx-auto"} to={"/"}>
-                                <FaHome></FaHome> Home
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink className={"w-64  mx-auto"} to={"/books"}>
-                                <FaBook></FaBook> Books
-                            </NavLink>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
+  return (
+    <div className="navbar lg:px-32 my-0 py-0 fixed w-full z-50 transition-all duration-300 bg-accent">
+      <div className="lg:navbar-start w-full">
+        <div className="dropdown">
+          <button
+            tabIndex={0}
+            className="btn btn-ghost  absolute z-30 lg:relative -top-6 lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </button>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content  z-[1] p-2 mt-8 ml-0 shadow bg-base-100 rounded-box w-52"
+          >
+            {navOptions}
+          </ul>
         </div>
-    );
+        <div className="w-full absolute z-20  flex lg:justify-start justify-around">
+          <NavLink to="/" className="btn btn-ghost text-xl ">
+            <img className="w-40 h-10" src={logo} alt="" />
+          </NavLink>
+        </div>
+      </div>
+      <div className="navbar-end hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-4 z-30">{navOptions}</ul>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;

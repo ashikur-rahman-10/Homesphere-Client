@@ -10,8 +10,8 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import AuthProviders from "./Providers/AuthProviders";
 import router from "./Routers/Router";
+import AuthProviders from "./Providers/AuthProviders";
 
 const queryClient = new QueryClient();
 

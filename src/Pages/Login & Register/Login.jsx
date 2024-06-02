@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/UseAuth";
 import toast, { Toaster } from "react-hot-toast";
+import "./login.css";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -31,6 +32,9 @@ const Login = () => {
       .catch((error) => {
         console.log(error.message);
         setError(error.message);
+        window.alert(
+          "The email or password you entered is incorrect. Try again."
+        );
       });
   };
 
@@ -40,45 +44,29 @@ const Login = () => {
   };
 
   const handleResetPassword = () => {
-    Swal.fire({
-      title: "Enter your email address",
-      input: "email",
-      inputPlaceholder: "Email address",
-      showCancelButton: true,
-      confirmButtonText: "Send reset link",
-      preConfirm: (email) => {
-        return resetPassword(email)
-          .then(() => {
-            Swal.fire({
-              icon: "success",
-              text: "Password reset email sent successfully",
-              title: "Please check your email account.",
-              showConfirmButton: false,
-              timer: 3000,
-            });
-          })
-          .catch((error) => {
-            Swal.showValidationMessage(`Request failed: ${error.message}`);
-          });
-      },
-    });
+    document.getElementById("my_modal_5").close();
+    const email = window.prompt("Enter your email address:");
+    if (email) {
+      resetPassword(email)
+        .then(() => {
+          window.alert(
+            "Password reset email sent successfully. Please check your email account."
+          );
+        })
+        .catch((error) => {
+          window.alert(`Request failed: ${error.message}`);
+        });
+    }
   };
 
   useEffect(() => {
     if (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: "The email or password you entered is incorrect. Try again.",
-      });
+      window.alert(
+        "The email or password you entered is incorrect. Try again."
+      );
     }
   }, [error]);
 
-  if (user) {
-    window.location.replace("https://bornomala-mart.web.app/");
-  }
-
-  // Scroll to top
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -154,7 +142,7 @@ const Login = () => {
           </small>
         </span>
       </form>
-      <Toaster></Toaster>
+      <Toaster />
     </div>
   );
 };

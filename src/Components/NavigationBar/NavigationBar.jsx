@@ -3,9 +3,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import Login from "../../Pages/Login & Register/Login";
+import logo from "../../assets/abacus-logo.ico";
+import useAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
+import "./NavigationBar.css";
 
 const NavigationBar = () => {
   const [scroll, setScroll] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,8 +28,28 @@ const NavigationBar = () => {
     };
   }, []);
 
+  const handleSignout = () => {
+    logout();
+  };
+
+  useEffect(() => {
+    if (user && !user?.emailVerified) {
+      window.alert("Please check your email to verify your account.");
+      logout()
+        .then((result) => {})
+        .catch((error) => {});
+    }
+  }, [user]);
   const navOptions = (
     <>
+      <li>
+        <NavLink
+          to="/dashboard"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Dashboard
+        </NavLink>
+      </li>
       <li>
         <NavLink
           to="/apartments"
@@ -50,12 +75,21 @@ const NavigationBar = () => {
         </NavLink>
       </li>
       <li>
-        <button
-          onClick={() => document.getElementById("my_modal_5").showModal()}
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
-        >
-          Join Us
-        </button>
+        {!user ? (
+          <button
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+            className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          >
+            Join Us
+          </button>
+        ) : (
+          <button
+            onClick={handleSignout}
+            className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30 text-red-400"
+          >
+            Sign Out
+          </button>
+        )}
       </li>
     </>
   );
@@ -98,7 +132,7 @@ const NavigationBar = () => {
         </div>
         <div className="w-full absolute z-20  flex lg:justify-start justify-around">
           <NavLink to="/" className="btn btn-ghost text-xl ">
-            Abacus Realty
+            <img className="w-40 h-10" src={logo} alt="" />
           </NavLink>
         </div>
       </div>

@@ -59,7 +59,7 @@ const Register = () => {
 
             // Send savedUser to your server
             const response = await fetch(
-              "https://bornomala-boighor-server.vercel.app/users",
+              "https://abacus-realty-server.vercel.app/users",
               {
                 method: "POST",
                 headers: {
@@ -120,10 +120,6 @@ const Register = () => {
         <p className="text-gray-400">Please Wait...</p>
       </div>
     );
-  }
-
-  if (user) {
-    window.location.replace("https://bornomala-mart.web.app/");
   }
 
   // Scroll to top
