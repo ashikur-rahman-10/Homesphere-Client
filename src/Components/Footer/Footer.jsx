@@ -8,7 +8,10 @@ const Footer = () => {
     <div className="bg-gradient-to-tl from-[#aef7fa] via-white to-white border text-[#626687]">
       <footer className="footer p-10 max-w-7xl mx-auto text-neutral-content">
         <div className="space-y-3">
-          <img className="w-28" src={logo} alt="" />
+          {/* <img className="w-28" src={logo} alt="" /> */}
+          <p className="text-4xl font-mono font-semibold text-accent">
+            Abacus Realty
+          </p>
           <p className="w-80 text-[#626687]">
             We provide information about properties such as houses, villas and
             apartments to help people find their dream home
@@ -55,10 +58,10 @@ const Footer = () => {
           <p className="text-black font-medium text-xl">Contract</p>
           <ul className="space-y-3">
             <li className="flex items-center gap-3">
-              <FaPhone /> +880 1644976404
+              <FaPhone /> +880 1644976***
             </li>
             <li className="flex items-center gap-3">
-              <FaEnvelope /> metro@info.com
+              <FaEnvelope /> abacus.realty@info.com
             </li>
             <li className="flex items-center gap-3">
               <FaLocationDot /> Avenue 5,Mirpur 10,Dhaka

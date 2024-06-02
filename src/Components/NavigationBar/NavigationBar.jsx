@@ -72,7 +72,7 @@ const NavigationBar = () => {
         <div className="dropdown">
           <button
             tabIndex={0}
-            className="btn btn-ghost  absolute lg:relative -top-6 lg:hidden"
+            className="btn btn-ghost  absolute z-30 lg:relative -top-6 lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,14 +96,14 @@ const NavigationBar = () => {
             {navOptions}
           </ul>
         </div>
-        <div className="w-full absolute  flex lg:justify-start justify-around">
+        <div className="w-full absolute z-20  flex lg:justify-start justify-around">
           <NavLink to="/" className="btn btn-ghost text-xl ">
-            daisyUI
+            Abacus Realty
           </NavLink>
         </div>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-4">{navOptions}</ul>
+        <ul className="menu menu-horizontal px-1 gap-4 z-30">{navOptions}</ul>
       </div>
 
       {/* Login Modal */}

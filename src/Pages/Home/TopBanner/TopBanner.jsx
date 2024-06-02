@@ -25,7 +25,7 @@ const TopBanner = () => {
 
             <button
               type="submit"
-              className="bg-[#10b981] absolute z-10 cursor-pointer hover:bg-green-600 right-[3px] top-[4px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
+              className="bg-accent absolute z-10 cursor-pointer hover:bg-[#4db6ac] right-[3px] top-[4px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
             >
               Search <FaMagnifyingGlass />
             </button>
