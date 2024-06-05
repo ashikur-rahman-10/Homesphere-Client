@@ -7,6 +7,7 @@ import Dashboard from "../Layouts/Dashboard";
 import AdminPage from "../Pages/Dashboard/AdminPage/AdminPage";
 import AdminOnly from "./AdminOnly";
 import AddApartment from "../Pages/Dashboard/AddApartment/AddApartment";
+import Apartments from "../Pages/Apartments/Apartments";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/apartments",
+        element: <Apartments />,
       },
     ],
   },

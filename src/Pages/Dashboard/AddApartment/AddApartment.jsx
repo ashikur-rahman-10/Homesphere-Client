@@ -24,6 +24,7 @@ const AddApartment = () => {
       location,
       price,
       keywords,
+      balcony,
     } = data;
 
     const imageFiles = data.thumbnail;
@@ -91,6 +92,7 @@ const AddApartment = () => {
       keywords,
       postedIn: new Date(),
       impression: 0,
+      balcony,
     };
 
     try {
@@ -243,16 +245,16 @@ const AddApartment = () => {
             </select>
           </div>
           <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="location">
-              Location
+            <label className="block mb-2 text-gray-700" htmlFor="balcony">
+              Balcony
             </label>
             <input
               className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="text"
-              id="location"
-              name="location"
-              placeholder="Location"
-              {...register("location", { required: true })}
+              type="number"
+              id="balcony"
+              name="balcony"
+              placeholder="Balcony"
+              {...register("balcony", { required: true })}
               required
             />
           </div>
@@ -271,6 +273,21 @@ const AddApartment = () => {
             />
           </div>
           <div className="w-full">
+            <label className="block mb-2 text-gray-700" htmlFor="location">
+              Location
+            </label>
+            <input
+              className="border border-accent rounded-md px-4 py-[6px] w-full"
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Location"
+              {...register("location", { required: true })}
+              required
+            />
+          </div>
+
+          <div className="w-full">
             <label className="block mb-2 text-gray-700" htmlFor="keywords">
               Keywords
             </label>
@@ -284,21 +301,23 @@ const AddApartment = () => {
               required
             />
           </div>
+
+          <div className="w-full">
+            <label className="block mb-2 text-gray-700" htmlFor="details">
+              Details
+            </label>
+            <textarea
+              className="border border-accent rounded-md px-4 py-[6px] w-full"
+              id="details"
+              name="details"
+              placeholder="Details"
+              rows="3"
+              {...register("details", { required: true })}
+              required
+            ></textarea>
+          </div>
         </div>
-        <div className="w-full">
-          <label className="block mb-2 text-gray-700" htmlFor="details">
-            Details
-          </label>
-          <textarea
-            className="border border-accent rounded-md px-4 py-[6px] w-full"
-            id="details"
-            name="details"
-            placeholder="Details"
-            rows="3"
-            {...register("details", { required: true })}
-            required
-          ></textarea>
-        </div>
+
         <div className="w-full flex items-center justify-center text-center">
           <input
             className="border border-accent rounded-full px-4 py-2 w-full text-white bg-accent hover:bg-white hover:text-accent cursor-pointer hover:outline outline-accent"
