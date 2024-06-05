@@ -131,93 +131,95 @@ const Register = () => {
 
   return (
     <div className="w-full flex items-center justify-center min-h-[80vh] py-12 bg-gray-50">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="border shadow-xl rounded-2xl my-5 py-4 px-8 space-y-4"
-      >
-        <h1 className="text-2xl text-center font-medium mb-5">Sign Up</h1>
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="name"
-            {...register("name", { required: true })}
-            required
-            className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
-          />
-        </div>
-        <div className="form-control">
-          <input
-            type="email"
-            placeholder="email"
-            {...register("email", { required: true })}
-            required
-            className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
-          />
-        </div>
-        <div className="form-control  lg:w-[350px] w-[300px]">
-          <label className="label">
-            <span className="label-text">Image</span>
-          </label>
-          <input
-            type="file"
-            {...register("image", { required: true })}
-            className="w-full border py-1 px-4 rounded-lg border-accent"
-          />
-        </div>
-        <div className="form-control w-full">
-          <input
-            type="text"
-            placeholder="phone number"
-            {...register("phone", { required: true })}
-            className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
-          />
-        </div>
-        <div className="form-control relative">
-          <input
-            type={show ? "text" : "password"}
-            placeholder="password"
-            {...register("password", { required: true })}
-            required
-            className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
-          />
-          <div
-            onClick={() => {
-              setShow(!show);
-            }}
-            className="absolute bottom-[6px] right-4 cursor-pointer text-xl hover:text-red-700"
-          >
-            {show ? <FaEye /> : <FaEyeSlash />}
+      {!user && (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="border shadow-xl rounded-2xl my-5 py-4 px-8 space-y-4"
+        >
+          <h1 className="text-2xl text-center font-medium mb-5">Sign Up</h1>
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="name"
+              {...register("name", { required: true })}
+              required
+              className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
+            />
           </div>
-        </div>
-        <div className="form-control w-full">
-          <select
-            {...register("gender", { required: true })}
-            className="rounded-lg border py-1 px-4 border-accent focus:outline-none lg:w-[350px] w-[300px]"
-          >
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-        <span className="w-full flex justify-center mt-4">
-          <small className="text-red-600">{error}</small>
-        </span>
-        <input
-          className="bg-accent cursor-pointer text-white py-[10px] rounded-3xl mt-4 hover:bg-transparent hover:text-accent hover:outline outline-accent] font-medium w-full"
-          type="submit"
-          value="Register"
-        />
-        <div className="divider">OR</div>
-        <GoogleLogin />
-        <span className="flex w-full justify-center mt-3">
-          <small className="text-center">
-            Already Have An Account?{" "}
-            <Link to="/login" className="text-info underline">
-              Login
-            </Link>
-          </small>
-        </span>
-      </form>
+          <div className="form-control">
+            <input
+              type="email"
+              placeholder="email"
+              {...register("email", { required: true })}
+              required
+              className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
+            />
+          </div>
+          <div className="form-control  lg:w-[350px] w-[300px]">
+            <label className="label">
+              <span className="label-text">Image</span>
+            </label>
+            <input
+              type="file"
+              {...register("image", { required: true })}
+              className="w-full border py-1 px-4 rounded-lg border-accent"
+            />
+          </div>
+          <div className="form-control w-full">
+            <input
+              type="text"
+              placeholder="phone number"
+              {...register("phone", { required: true })}
+              className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
+            />
+          </div>
+          <div className="form-control relative">
+            <input
+              type={show ? "text" : "password"}
+              placeholder="password"
+              {...register("password", { required: true })}
+              required
+              className="border border-accent py-1 px-4 rounded-lg input-bordered input-accent focus:outline-none lg:w-[350px] w-[300px]"
+            />
+            <div
+              onClick={() => {
+                setShow(!show);
+              }}
+              className="absolute bottom-[6px] right-4 cursor-pointer text-xl hover:text-red-700"
+            >
+              {show ? <FaEye /> : <FaEyeSlash />}
+            </div>
+          </div>
+          <div className="form-control w-full">
+            <select
+              {...register("gender", { required: true })}
+              className="rounded-lg border py-1 px-4 border-accent focus:outline-none lg:w-[350px] w-[300px]"
+            >
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <span className="w-full flex justify-center mt-4">
+            <small className="text-red-600">{error}</small>
+          </span>
+          <input
+            className="bg-accent cursor-pointer text-white py-[10px] rounded-3xl mt-4 hover:bg-transparent hover:text-accent hover:outline outline-accent] font-medium w-full"
+            type="submit"
+            value="Register"
+          />
+          <div className="divider">OR</div>
+          <GoogleLogin />
+          <span className="flex w-full justify-center mt-3">
+            <small className="text-center">
+              Already Have An Account?{" "}
+              <Link to="/login" className="text-info underline">
+                Login
+              </Link>
+            </small>
+          </span>
+        </form>
+      )}
       <Toaster />
     </div>
   );

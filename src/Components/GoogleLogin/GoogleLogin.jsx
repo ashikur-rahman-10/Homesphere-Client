@@ -1,17 +1,17 @@
 import React, { useState } from "react";
+import useAuth from "../../Hooks/UseAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/UseAuth";
 
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || "/";
+  const from = location?.state?.pathname || "/";
   const navigate = useNavigate();
 
   // Google Login
-  const handleGoogle = () => {
+  const hangleGoogle = () => {
     googleLogin()
       .then((result) => {
         const loggedUser = result.user;
@@ -29,32 +29,23 @@ const GoogleLogin = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(savedUser),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (response.ok) {
-              toast.success("Successfully Logged In!");
-              setError(null);
-              navigate(from, { replace: true });
-            } else {
-              throw new Error(data.message || "Failed to save user");
-            }
-          })
-          .catch((error) => {
-            setError(error.message);
-            toast.error(`Google login failed: ${error.message}`);
-          });
+        });
+        toast.success("Successfully Login!");
+        setError("");
+        navigate(from);
+        setTimeout(() => {
+          window.location.reload();
+        }, 300);
       })
       .catch((error) => {
         setError(error.message);
-        toast.error(`Google login failed: ${error.message}`);
       });
   };
 
   return (
     <div>
       <div
-        onClick={handleGoogle}
+        onClick={hangleGoogle}
         className="w-full flex justify-center cursor-pointer bg-white px-4 py-2 border rounded-md hover:border-accent"
       >
         <div className="flex gap-2 justify-center items-center">
