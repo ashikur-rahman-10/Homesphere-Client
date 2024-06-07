@@ -11,7 +11,7 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const { user, login, loginWithGoogle, resetPassword } = useAuth();
   const location = useLocation();
-  const from = location?.state?.pathname || "/";
+  const from = location?.state?.from || "/";
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {

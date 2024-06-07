@@ -60,6 +60,14 @@ const NavigationBar = () => {
       )}
       <li>
         <NavLink
+          to="/add-apartment"
+          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+        >
+          Sell
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/apartments"
           className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >

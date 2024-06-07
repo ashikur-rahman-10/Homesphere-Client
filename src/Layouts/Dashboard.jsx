@@ -33,7 +33,7 @@ const Dashboard = () => {
 
       <li>
         <NavLink
-          to="/appartments"
+          to="/apartments"
           className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >
           Appartments

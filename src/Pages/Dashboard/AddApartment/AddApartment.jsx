@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import UseAdmin from "../../../Hooks/UseAdmin";
+import useAuth from "../../../Hooks/UseAuth";
+import useThisUser from "../../../Hooks/UseThisUser";
 
 const AddApartment = () => {
   const { register, handleSubmit, reset } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const { admin } = UseAdmin();
+  const { thisUser } = useThisUser();
 
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_HOSTING_KEY
@@ -26,6 +31,7 @@ const AddApartment = () => {
       keywords,
       balcony,
     } = data;
+    const postStatus = admin ? "approved" : "pending";
 
     const imageFiles = data.thumbnail;
     const imageUrls = [];
@@ -93,6 +99,9 @@ const AddApartment = () => {
       postedIn: new Date(),
       impression: 0,
       balcony,
+      buildYear,
+      postStatus,
+      soldBy: thisUser,
     };
 
     try {
@@ -134,13 +143,13 @@ const AddApartment = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[90vh] w-full px-4 py-10 md:py-1 text-xs">
+    <div className="flex items-center justify-center min-h-[100vh] w-full px-4  md:py-1 text-xs z-0 ">
       <form
         className="w-full max-w-2xl border px-6 py-12 md:p-12 rounded-xl shadow-md space-y-5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="text-3xl text-center text-gray-500 pb-5">
-          Add Apartment
+          Sell Apartment
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="w-full">
@@ -264,7 +273,7 @@ const AddApartment = () => {
             </label>
             <input
               className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
+              type="text"
               id="price"
               name="price"
               placeholder="Price"
@@ -289,15 +298,15 @@ const AddApartment = () => {
 
           <div className="w-full">
             <label className="block mb-2 text-gray-700" htmlFor="keywords">
-              Keywords
+              Build Year
             </label>
             <input
               className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="text"
-              id="keywords"
-              name="keywords"
-              placeholder="Keywords (comma separated)"
-              {...register("keywords", { required: true })}
+              type="number"
+              id="buildYear"
+              name="buildYear"
+              placeholder="build Year "
+              {...register("buildYear", { required: true })}
               required
             />
           </div>

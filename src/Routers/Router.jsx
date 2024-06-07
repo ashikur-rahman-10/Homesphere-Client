@@ -8,6 +8,8 @@ import AdminPage from "../Pages/Dashboard/AdminPage/AdminPage";
 import AdminOnly from "./AdminOnly";
 import AddApartment from "../Pages/Dashboard/AddApartment/AddApartment";
 import Apartments from "../Pages/Apartments/Apartments";
+import PrivateRoute from "./PrivateRoute";
+import ApartmentDetails from "../Pages/ApartmentDetails/ApartmentDetails";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,24 @@ const router = createBrowserRouter([
         path: "/apartments",
         element: <Apartments />,
       },
+      {
+        path: "/apartments/:id",
+        element: (
+          <PrivateRoute>
+            <ApartmentDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-apartment",
+        element: (
+          <PrivateRoute>
+            <div className="pt-12">
+              <AddApartment />
+            </div>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -47,10 +67,6 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <AdminPage />,
-      },
-      {
-        path: "add-apartment",
-        element: <AddApartment />,
       },
     ],
   },
