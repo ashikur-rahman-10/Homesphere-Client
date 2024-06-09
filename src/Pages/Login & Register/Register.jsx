@@ -199,9 +199,9 @@ const Register = () => {
               <option>Female</option>
             </select>
           </div>
-          <span className="w-full flex justify-center mt-4">
+          {/* <span className="w-full flex justify-center mt-4">
             <small className="text-red-600">{error}</small>
-          </span>
+          </span> */}
           <input
             className="bg-accent cursor-pointer text-white py-[10px] rounded-3xl mt-4 hover:bg-transparent hover:text-accent hover:outline outline-accent] font-medium w-full"
             type="submit"

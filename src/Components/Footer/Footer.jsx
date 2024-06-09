@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="space-y-3">
           <img className="w-40 h-14" src={logo} alt="" />
           {/* <p className="text-4xl font-mono font-semibold text-accent">
-            Abacus Realty
+            Homesphere
           </p> */}
           <p className="w-80 text-[#626687]">
             We provide information about properties such as houses, villas and
@@ -61,7 +61,7 @@ const Footer = () => {
               <FaPhone /> +880 1644976***
             </li>
             <li className="flex items-center gap-3">
-              <FaEnvelope /> abacus.realty@info.com
+              <FaEnvelope /> homesphere@info.com
             </li>
             <li className="flex items-center gap-3">
               <FaLocationDot /> Avenue 5,Mirpur 10,Dhaka
