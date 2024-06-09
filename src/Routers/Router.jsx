@@ -10,6 +10,7 @@ import AddApartment from "../Pages/Dashboard/AddApartment/AddApartment";
 import Apartments from "../Pages/Apartments/Apartments";
 import PrivateRoute from "./PrivateRoute";
 import ApartmentDetails from "../Pages/ApartmentDetails/ApartmentDetails";
+import GetAppointment from "../Pages/GetAppointment/GetAppointment";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <div className="pt-12">
               <AddApartment />
+            </div>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/get-appointment/:id",
+        element: (
+          <PrivateRoute>
+            <div className="">
+              <GetAppointment />
             </div>
           </PrivateRoute>
         ),

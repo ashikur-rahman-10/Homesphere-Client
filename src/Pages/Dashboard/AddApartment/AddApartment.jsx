@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import UseAdmin from "../../../Hooks/UseAdmin";
-import useAuth from "../../../Hooks/UseAuth";
 import useThisUser from "../../../Hooks/UseThisUser";
 
 const AddApartment = () => {
@@ -28,8 +27,8 @@ const AddApartment = () => {
       size,
       location,
       price,
-      keywords,
       balcony,
+      buildYear,
     } = data;
     const postStatus = admin ? "approved" : "pending";
 
@@ -84,6 +83,8 @@ const AddApartment = () => {
       return;
     }
 
+    const { name, email, role, photoURL } = thisUser; // Extract only necessary properties
+
     const apartment = {
       title,
       details,
@@ -95,14 +96,15 @@ const AddApartment = () => {
       size,
       location,
       price,
-      keywords,
       postedIn: new Date(),
       impression: 0,
       balcony,
       buildYear,
       postStatus,
-      soldBy: thisUser,
+      soldBy: { name, email, photoURL, role }, // Include only necessary properties
     };
+
+    console.log(apartment);
 
     try {
       const response = await fetch(
@@ -125,8 +127,8 @@ const AddApartment = () => {
         });
         reset();
       } else {
-        const errorResponse = await response.json(); // Add this line
-        console.error("Server response:", errorResponse); // And this line
+        const errorResponse = await response.json();
+        console.error("Server response:", errorResponse);
         throw new Error("Failed to add apartment. Please try again.");
       }
     } catch (error) {
@@ -297,7 +299,7 @@ const AddApartment = () => {
           </div>
 
           <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="keywords">
+            <label className="block mb-2 text-gray-700" htmlFor="buildYear">
               Build Year
             </label>
             <input
@@ -305,7 +307,7 @@ const AddApartment = () => {
               type="number"
               id="buildYear"
               name="buildYear"
-              placeholder="build Year "
+              placeholder="Build Year"
               {...register("buildYear", { required: true })}
               required
             />

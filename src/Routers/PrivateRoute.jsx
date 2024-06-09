@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/UseAuth";
+import CustomLoader from "../Components/CustomLoader/CustomLoader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -22,7 +23,7 @@ const PrivateRoute = ({ children }) => {
   }, [loading, user, location]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <CustomLoader />;
   }
 
   if (user) {

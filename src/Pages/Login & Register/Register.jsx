@@ -44,7 +44,6 @@ const Register = () => {
           photoURL: imgUrl,
           gender,
           phone,
-          password,
           role: "buyer",
         };
 

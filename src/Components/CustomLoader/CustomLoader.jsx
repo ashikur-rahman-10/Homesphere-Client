@@ -5,7 +5,6 @@ const CustomLoader = () => {
   return (
     <div>
       <div className="w-full min-h-screen flex justify-center items-center bg-white">
-        render(
         <LineWave
           visible={true}
           height="100"
@@ -18,7 +17,6 @@ const CustomLoader = () => {
           middleLineColor=""
           lastLineColor=""
         />
-        )
       </div>
     </div>
   );

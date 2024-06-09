@@ -1,11 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import {
   FaBed,
+  FaCalendar,
   FaHammer,
   FaHeart,
   FaLocationDot,
@@ -13,6 +14,7 @@ import {
 } from "react-icons/fa6";
 import { GiBathtub } from "react-icons/gi";
 import { MdBalcony, MdOutlineGarage } from "react-icons/md";
+import { FaCalendarCheck, FaRegCalendarAlt } from "react-icons/fa";
 
 const ApartmentDetails = () => {
   const { id } = useParams();
@@ -53,7 +55,7 @@ const ApartmentDetails = () => {
   } = apartment;
 
   return (
-    <div className="py-16 lg:px-36 px-2">
+    <div className="py-10 lg:px-36 px-2">
       <div className="w-full flex flex-col md:flex-row justify-between pt-10">
         <div className="apartment-details h-[500px] w-full md:max-w-[48%]">
           {thumbnails.length > 0 ? (
@@ -125,16 +127,23 @@ const ApartmentDetails = () => {
               </p>
             </div>
           </div>
-          <div className="pt-6">
-            <button className="flex items-center gap-2 bg-red-50 px-4 py-1 rounded-md text-red-400 uppercase outline outline-red-100 hover:bg-red-400 hover:text-white duration-500">
+          <div className="py-6 w-full flex gap-10">
+            <button className="flex items-center gap-2 text-xs md:text-sm bg-red-50 px-4 py-1 rounded-md text-red-400 uppercase outline outline-red-100 hover:bg-red-400 hover:text-white duration-500">
               <FaHeart /> Save
             </button>
+
+            <Link
+              to={`/get-appointment/${_id}`}
+              className="flex items-center gap-2 text-xs md:text-sm bg-yellow-50 px-4 py-1 rounded-md text-yellow-400 uppercase outline outline-yellow-100 hover:bg-yellow-400 hover:text-white duration-500"
+            >
+              <FaRegCalendarAlt /> Book Appointment
+            </Link>
           </div>
         </div>
       </div>
       <div className="pb-16">
         <p className="text-xl pb-4">
-          bdt<span className="text-3xl">{price}</span>
+          BDT<span className="text-3xl">{price}</span>
         </p>
         <p className="text-[#757575]">{details}</p>
         <img className="pt-10 w-full px-4" src={floorPlan} alt="" />
