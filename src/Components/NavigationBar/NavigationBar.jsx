@@ -155,11 +155,11 @@ const NavigationBar = () => {
             to="/"
             className="btn btn-ghost text-xl rounded-full hover:bg-white bg-opacity-20"
           >
-            <img className="w-40 h-10" src={logo} alt="" />
+            <img className="w-52 " src={logo} alt="" />
           </NavLink>
         </div>
       </div>
-      <div className="navbar-end hidden lg:flex">
+      <div className="navbar-end hidden lg:flex w-full">
         <ul className="menu menu-horizontal px-1 gap-4 z-30">{navOptions}</ul>
       </div>
 

@@ -8,10 +8,10 @@ const AdminPage = () => {
       <h1 className="py-20">Admin page</h1>
       <div className="w-fit">
         <Link
-          to={"add-apartment"}
+          to={"add-Blog"}
           className="w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-sky-400 uppercase hover:bg-slate-50 font-semibold hover:border border-sky-400 hover:scale-105 duration-300"
         >
-          Add appartment
+          Add Blog
           <FaPlus className="text-xl" />
         </Link>
       </div>

@@ -11,6 +11,8 @@ import Apartments from "../Pages/Apartments/Apartments";
 import PrivateRoute from "./PrivateRoute";
 import ApartmentDetails from "../Pages/ApartmentDetails/ApartmentDetails";
 import GetAppointment from "../Pages/GetAppointment/GetAppointment";
+import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
+import Articles from "../Pages/Articles/Articles";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/apartments",
         element: <Apartments />,
+      },
+      {
+        path: "articles",
+        element: <Articles></Articles>,
       },
       {
         path: "/apartments/:id",
@@ -78,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <AdminPage />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
       },
     ],
   },

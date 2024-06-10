@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="bg-gradient-to-tl from-[#aef7fa] via-white to-white border text-[#626687]">
       <footer className="footer p-10 max-w-7xl mx-auto text-neutral-content">
         <div className="space-y-3">
-          <img className="w-40 h-14" src={logo} alt="" />
+          <img className="w-52 h-10" src={logo} alt="" />
           {/* <p className="text-4xl font-mono font-semibold text-accent">
             Homesphere
           </p> */}

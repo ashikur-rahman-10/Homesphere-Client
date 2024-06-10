@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       gradientColorStopPositions: {
         33: '33%',
-      }
+      },
+
     },
   },
   plugins: [require('daisyui')],
