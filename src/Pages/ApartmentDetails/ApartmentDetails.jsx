@@ -14,10 +14,14 @@ import {
 } from "react-icons/fa6";
 import { GiBathtub } from "react-icons/gi";
 import { MdBalcony, MdOutlineGarage } from "react-icons/md";
-import { FaCalendarCheck, FaRegCalendarAlt } from "react-icons/fa";
+import { FaCalendarCheck, FaCarAlt, FaRegCalendarAlt } from "react-icons/fa";
+import useAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
+import CustomLoader from "../../Components/CustomLoader/CustomLoader";
 
 const ApartmentDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [axiosSecure] = UseAxiosSecure();
 
   // Get apartment data
@@ -28,6 +32,19 @@ const ApartmentDetails = () => {
       return res.data;
     },
   });
+
+  // Get apartment favorites of user
+  const { data: favorites = {}, refetch: favoritesRefetch } = useQuery({
+    queryKey: ["favorites", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/favorites/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const findFav = Array.isArray(favorites)
+    ? favorites.find((f) => f.apartmentId === id)
+    : null;
 
   const onChange = (index, item) => {};
 
@@ -53,6 +70,30 @@ const ApartmentDetails = () => {
     balcony,
     buildYear,
   } = apartment;
+
+  const hanedleFavorite = (id) => {
+    const favoriteApartment = {
+      apartmentId: id,
+      userEmail: user?.email,
+      userName: user?.displayName,
+    };
+
+    axiosSecure.post(`/favorites`, favoriteApartment).then((response) => {
+      if (response.data.acknowledged) {
+        Swal.fire({
+          icon: "success",
+          title: "Favorite Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        favoritesRefetch();
+      }
+    });
+  };
+
+  if (!favorites) {
+    return <CustomLoader></CustomLoader>;
+  }
 
   return (
     <div className="py-10 lg:px-36 px-2">
@@ -111,13 +152,17 @@ const ApartmentDetails = () => {
             <div className="flex items-center gap-2">
               <MdOutlineGarage className="text-3xl text-red-400" />{" "}
               <p className="flex flex-col">
-                Garages: <span className="text-black">{garages}</span>
+                Garages:{" "}
+                <span className="text-black flex items-center gap-1">
+                  {garages}
+                  <FaCarAlt className="text-gray-700" />
+                </span>
               </p>
             </div>
             <div className="flex items-center gap-2">
               <FaRuler className="text-3xl text-red-400" />{" "}
               <p className="flex flex-col">
-                Washrooms: <span className="text-black"> {size} SqFt</span>
+                Size: <span className="text-black"> {size} SqFt</span>
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -128,9 +173,17 @@ const ApartmentDetails = () => {
             </div>
           </div>
           <div className="py-6 w-full flex gap-10">
-            <button className="flex items-center gap-2 text-xs md:text-sm bg-red-50 px-4 py-1 rounded-md text-red-400 uppercase outline outline-red-100 hover:bg-red-400 hover:text-white duration-500">
-              <FaHeart /> Save
-            </button>
+            {!findFav && (
+              <button
+                onClick={() => {
+                  hanedleFavorite(`${_id}`);
+                }}
+                disabled={findFav} // Disable the button if findFav exists
+                className="flex items-center gap-2 text-xs md:text-sm bg-red-50 px-4 py-1 rounded-md text-red-400 uppercase outline outline-red-100 hover:bg-red-400 hover:text-white duration-500"
+              >
+                <FaHeart /> Save
+              </button>
+            )}
 
             <Link
               to={`/get-appointment/${_id}`}

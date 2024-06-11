@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useThisUser from "../../Hooks/UseThisUser";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const GetAppointment = () => {
   const { id } = useParams();
+
   const { register, handleSubmit, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookedTimeSlots, setBookedTimeSlots] = useState([]);
   const { thisUser } = useThisUser();
 
   const dates = [
@@ -26,6 +30,22 @@ const GetAppointment = () => {
     "3:01 PM - 5:00 PM",
     "5:01 PM - 7:00 PM",
   ];
+
+  useEffect(() => {
+    fetchBookedTimeSlots();
+  }, [selectedDate]);
+
+  const fetchBookedTimeSlots = () => {
+    fetch(
+      `https://abacus-realty-server.vercel.app/appointments/booked-time-slots?date=${
+        selectedDate.toISOString().split("T")[0]
+      }`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setBookedTimeSlots(data);
+      });
+  };
 
   const onSubmit = async (data) => {
     if (!selectedDate || !selectedTimeSlot) {
@@ -48,11 +68,9 @@ const GetAppointment = () => {
       bookingsFor: id,
     };
 
-    console.log(appointment);
-
     try {
       const response = await fetch(
-        "https://your-backend-api-url.com/appointments",
+        "https://abacus-realty-server.vercel.app/appointments",
         {
           method: "POST",
           headers: {
@@ -88,8 +106,15 @@ const GetAppointment = () => {
     }
   };
 
+  const isTimeSlotBooked = (timeSlot) => {
+    return bookedTimeSlots.includes(timeSlot);
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-[100vh] w-full px-4 py-1 text-xs pt-16 z-0">
+    <div
+      className="flex items-center justify-center min-h-[100vh]
+      w-full px-4 py-1 text-xs pt-16 z-0"
+    >
       <form
         className="w-full max-w-md border px-6 py-12 rounded-xl shadow-md space-y-5"
         onSubmit={handleSubmit(onSubmit)}
@@ -134,11 +159,18 @@ const GetAppointment = () => {
                 key={index}
                 type="button"
                 className={`px-1 py-2 rounded-lg ${
-                  selectedTimeSlot === slot
+                  isTimeSlotBooked(slot)
+                    ? "bg-gray-400 cursor-not-allowed text-white"
+                    : selectedTimeSlot === slot
                     ? "bg-green-600 text-white"
-                    : "bg-gray-200"
+                    : "bg-gray-200 hover:bg-green-600 hover:text-white"
                 }`}
-                onClick={() => setSelectedTimeSlot(slot)}
+                onClick={() => {
+                  if (!isTimeSlotBooked(slot)) {
+                    setSelectedTimeSlot(slot);
+                  }
+                }}
+                disabled={isTimeSlotBooked(slot)}
               >
                 {slot}
               </button>
