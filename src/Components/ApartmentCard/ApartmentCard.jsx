@@ -22,6 +22,7 @@ const ApartmentCard = ({ apartment }) => {
     postedIn,
     impression,
     balcony,
+    soldBy,
   } = apartment;
 
   return (
@@ -31,7 +32,7 @@ const ApartmentCard = ({ apartment }) => {
     >
       <img
         className="md:w-[320px] lg:w-80 w-full h-48 rounded-t-2xl"
-        src={thumbnails[1]}
+        src={thumbnails[0]}
         alt={title}
       />
       <div className="p-4">
@@ -58,13 +59,19 @@ const ApartmentCard = ({ apartment }) => {
           </p>
         </div>
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2  bg-sky-100 rounded-full">
+          {/* <div className="flex items-center gap-2  bg-sky-100 rounded-full">
             <div className="bg-slate-200 p-2 rounded-full hover:bg-slate-100">
               <FaThumbsUp className="text-xl hover:text-sky-600 text-sky-400" />
             </div>
             {impression > 0 && (
-              <span className="text-xs pr-3">{impression}</span>
+              <span cl
+              assName="text-xs pr-3">{impression}</span>
             )}
+           
+          </div> */}
+          <div className="flex items-center gap-2 ">
+            <img className="w-8 rounded-full" src={soldBy?.photoURL} alt="" />
+            <p className="text-xs w-24 overflow-hidden">{soldBy?.name}</p>
           </div>
           <p className="text-lg font-medium">{price} Tk</p>
         </div>

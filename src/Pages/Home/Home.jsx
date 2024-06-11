@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import TopBanner from "./TopBanner/TopBanner";
+import ApartmentSection from "./ApartmentSection/ApartmentSection";
 
 const Home = () => {
   useEffect(() => {
@@ -12,6 +13,7 @@ const Home = () => {
   return (
     <div>
       <TopBanner></TopBanner>
+      <ApartmentSection></ApartmentSection>
     </div>
   );
 };

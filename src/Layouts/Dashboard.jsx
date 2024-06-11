@@ -104,8 +104,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="pt-16 w-full min-h-[100vh]">
-        <Outlet></Outlet>
+      <div className="bg-slate-50 min-h-screen">
+        <div className="max-w-7xl w-full min-h-[90vh] px-4 mx-auto pt-16 ">
+          <Outlet></Outlet>
+        </div>
       </div>
     </div>
   );

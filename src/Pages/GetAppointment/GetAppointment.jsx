@@ -110,6 +110,13 @@ const GetAppointment = () => {
     return bookedTimeSlots.includes(timeSlot);
   };
 
+  // Scroll to top
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+
   return (
     <div
       className="flex items-center justify-center min-h-[100vh]

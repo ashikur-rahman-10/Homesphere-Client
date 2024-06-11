@@ -13,6 +13,7 @@ import ApartmentDetails from "../Pages/ApartmentDetails/ApartmentDetails";
 import GetAppointment from "../Pages/GetAppointment/GetAppointment";
 import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
 import Articles from "../Pages/Articles/Articles";
+import ManagePost from "../Pages/Dashboard/ManagePost/ManagePost";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "add-blog",
         element: <AddBlog />,
+      },
+      {
+        path: "manage-post",
+        element: <ManagePost />,
       },
     ],
   },

@@ -84,7 +84,7 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center min-h-screen bg-yellow-100">
+    <div className="relative flex justify-center items-center min-h-[90vh]">
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="relative bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden">
           <div className="absolute inset-0 bg-pink-200 transform translate-x-4 translate-y-4 rounded-lg z-0"></div>
