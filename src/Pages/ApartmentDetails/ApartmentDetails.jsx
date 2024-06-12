@@ -41,6 +41,10 @@ const ApartmentDetails = () => {
     },
   });
 
+  const formatPrice = (price) => {
+    return Math.round(Number(price)).toLocaleString("en-US");
+  };
+
   const findFav = Array.isArray(favorites)
     ? favorites.find((f) => f.apartmentId === id)
     : null;
@@ -93,6 +97,13 @@ const ApartmentDetails = () => {
   if (!favorites) {
     return <CustomLoader></CustomLoader>;
   }
+
+  // Scroll to top
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 
   return (
     <div className="py-10 lg:px-36 px-2">
@@ -195,7 +206,7 @@ const ApartmentDetails = () => {
       </div>
       <div className="pb-16">
         <p className="text-xl pb-4">
-          BDT<span className="text-3xl">{price}</span>
+          BDT<span className="text-3xl"> {formatPrice(price)} </span>
         </p>
         <p className="text-[#757575]">{details}</p>
         <img className="pt-10 w-full px-4" src={floorPlan} alt="" />

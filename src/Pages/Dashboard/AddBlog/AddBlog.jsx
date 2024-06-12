@@ -82,6 +82,12 @@ const AddBlog = () => {
       setCreating(false);
     }
   };
+  // Scroll to top
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 
   return (
     <div className="relative flex justify-center items-center min-h-[90vh]">

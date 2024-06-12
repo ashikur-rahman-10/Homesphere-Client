@@ -25,6 +25,10 @@ const ApartmentCard = ({ apartment }) => {
     soldBy,
   } = apartment;
 
+  const formatPrice = (price) => {
+    return Math.round(Number(price)).toLocaleString("en-US");
+  };
+
   return (
     <Link
       to={`/apartments/${_id}`}
@@ -73,7 +77,7 @@ const ApartmentCard = ({ apartment }) => {
             <img className="w-8 rounded-full" src={soldBy?.photoURL} alt="" />
             <p className="text-xs w-24 overflow-hidden">{soldBy?.name}</p>
           </div>
-          <p className="text-lg font-medium">{price} Tk</p>
+          <p className="text-lg font-medium"> {formatPrice(price)} Tk</p>
         </div>
       </div>
     </Link>
