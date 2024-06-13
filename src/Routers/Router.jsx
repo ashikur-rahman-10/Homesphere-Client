@@ -4,16 +4,18 @@ import Login from "../Pages/Login & Register/Login";
 import Register from "../Pages/Login & Register/Register";
 import Home from "../Pages/Home/Home";
 import Dashboard from "../Layouts/Dashboard";
-import AdminPage from "../Pages/Dashboard/AdminPage/AdminPage";
 import AdminOnly from "./AdminOnly";
-import AddApartment from "../Pages/Dashboard/AddApartment/AddApartment";
 import Apartments from "../Pages/Apartments/Apartments";
 import PrivateRoute from "./PrivateRoute";
 import ApartmentDetails from "../Pages/ApartmentDetails/ApartmentDetails";
 import GetAppointment from "../Pages/GetAppointment/GetAppointment";
-import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
+import AddApartment from "../Pages/AddApartment/AddApartment";
+import AdminPage from "../Pages/Dashboard/AdminDashboard/AdminPage/AdminPage";
+import AddBlog from "../Pages/Dashboard/AdminDashboard/AddBlog/AddBlog";
+import ManagePost from "../Pages/Dashboard/AdminDashboard/ManagePost/ManagePost";
 import Articles from "../Pages/Articles/Articles";
-import ManagePost from "../Pages/Dashboard/ManagePost/ManagePost";
+import ManageBlogs from "../Pages/Dashboard/AdminDashboard/ManageBlogs/ManageBlogs";
+import Article from "../Pages/Articles/Article";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ApartmentDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blogs/:id",
+        element: (
+          <PrivateRoute>
+            <Article />
           </PrivateRoute>
         ),
       },
@@ -93,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "manage-post",
         element: <ManagePost />,
+      },
+      {
+        path: "manage-blogs",
+        element: <ManageBlogs />,
       },
     ],
   },

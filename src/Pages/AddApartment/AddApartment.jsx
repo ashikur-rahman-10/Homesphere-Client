@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import UseAdmin from "../../../Hooks/UseAdmin";
-import useThisUser from "../../../Hooks/UseThisUser";
+import UseAdmin from "../../Hooks/UseAdmin";
+import useThisUser from "../../Hooks/UseThisUser";
 
 const AddApartment = () => {
   const { register, handleSubmit, reset } = useForm();

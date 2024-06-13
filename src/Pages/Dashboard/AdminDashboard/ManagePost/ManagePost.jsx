@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import UseApartment from "../../../Hooks/UseApartment";
+import UseApartment from "../../../../Hooks/UseApartment";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaBed, FaRuler, FaTrashAlt } from "react-icons/fa";
 import { GiBathtub } from "react-icons/gi";
 import { MdBalcony, MdOutlineGarage } from "react-icons/md";
-import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 
 const ManagePost = () => {
@@ -78,12 +78,18 @@ const ManagePost = () => {
     });
   };
 
-  // Scroll to top
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
+  const getStatusClass = (status) => {
+    switch (status) {
+      case "approved":
+        return "text-green-400";
+      case "pending":
+        return "text-blue-500";
+      case "sold":
+        return "text-red-400";
+      default:
+        return "";
+    }
+  };
 
   return (
     <div>
@@ -126,7 +132,9 @@ const ManagePost = () => {
                   <select
                     onChange={(e) => handleStatusChange(a._id, e.target.value)}
                     value={a.postStatus}
-                    className="py-1  text-xs border rounded-md"
+                    className={`py-1 text-xs border rounded-md ${getStatusClass(
+                      a.postStatus
+                    )}`}
                   >
                     <option value="pending">Pending</option>
                     <option value="approved">Approved</option>

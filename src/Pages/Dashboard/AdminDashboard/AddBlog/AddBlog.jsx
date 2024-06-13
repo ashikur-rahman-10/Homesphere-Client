@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../../Hooks/UseAuth";
+import useAuth from "../../../../Hooks/UseAuth";
 
 const AddBlog = () => {
   const [creating, setCreating] = useState(false);
