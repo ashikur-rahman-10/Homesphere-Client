@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Link, createBrowserRouter, useNavigate } from "react-router-dom";
 import Main from "../Layouts/Main";
 import Login from "../Pages/Login & Register/Login";
 import Register from "../Pages/Login & Register/Register";
@@ -16,8 +16,24 @@ import ManagePost from "../Pages/Dashboard/AdminDashboard/ManagePost/ManagePost"
 import Articles from "../Pages/Articles/Articles";
 import ManageBlogs from "../Pages/Dashboard/AdminDashboard/ManageBlogs/ManageBlogs";
 import Article from "../Pages/Articles/Article";
+import notFound from "../assets/404.gif";
+import { FaHome } from "react-icons/fa";
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    element: (
+      <div className="w-full min-h-screen flex flex-col items-center justify-center">
+        <img className="lg:w-[40%]" src={notFound} alt="" />
+        <Link
+          to={"/"}
+          className="bg-accent text-white px-6 py-2 rounded-full flex items-center gap-1 text-sm hover:bg-blue-500"
+        >
+          Home <FaHome className="text-xl" />
+        </Link>
+      </div>
+    ),
+  },
   {
     path: "/",
     element: <Main></Main>,

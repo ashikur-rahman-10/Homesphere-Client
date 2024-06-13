@@ -22,16 +22,18 @@ const Article = () => {
     behavior: "smooth",
   });
   return (
-    <div className="py-16">
+    <div className="py-16 max-w-6xl mx-auto">
       <div className="bg-white  mb-4">
         <img
           src={blog.image}
           alt={blog.title}
-          className="rounded-sm object-cover w-full max-h-96"
+          className="rounded-sm object-cover w-full max-h-96 max-w-2xl mx-auto"
         />
         <div className="p-6">
           <h2 className="text-3xl font-semibold mb-2">{blog.title}</h2>
-          <p className="text-gray-700">{blog.content}</p>
+          <pre className="text-gray-700 whitespace-pre-wrap font-sans pt-6">
+            {blog.content}
+          </pre>
           <p className="mt-4 text-sm text-gray-600">
             Posted By: {blog.postedBy?.name}
           </p>
