@@ -20,6 +20,7 @@ import notFound from "../assets/404.gif";
 import { FaHome } from "react-icons/fa";
 import UserPage from "../Pages/Dashboard/UserDashboard/UserPage/UserPage";
 import ManageMyPost from "../Pages/Dashboard/UserDashboard/ManageMyPost/ManageMyPost";
+import SearchPage from "../Pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -61,8 +62,12 @@ const router = createBrowserRouter([
         element: <Apartments />,
       },
       {
-        path: "articles",
+        path: "/articles",
         element: <Articles></Articles>,
+      },
+      {
+        path: "/search/:searchTerm",
+        element: <SearchPage />,
       },
       {
         path: "/user-dashboard",

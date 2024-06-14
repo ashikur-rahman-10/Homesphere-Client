@@ -1,9 +1,15 @@
 import React from "react";
-import { FaHeartCircleBolt, FaPlus } from "react-icons/fa6";
+import {
+  FaHeartCircleBolt,
+  FaHouseMedical,
+  FaPlus,
+  FaRegCalendarCheck,
+} from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdManageHistory } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useThisUser from "../../../../Hooks/UseThisUser";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const UserPage = () => {
   const { thisUser } = useThisUser();
@@ -19,10 +25,10 @@ const UserPage = () => {
       {/* <h1 className="text-xl text-center text-gray-500 py-4">User Page</h1> */}
 
       <div className="min-h-[80vh] w-full flex items-center justify-center">
-        <div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-4 ">
           <Link
             to={"/manage-profile"}
-            className=" w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-sky-400 uppercase hover:bg-sky-50 font-semibold hover:border border-sky-400 hover:scale-105 duration-300"
+            className=" w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-green-400 uppercase hover:bg-green-50 font-semibold hover:border border-green-400 hover:scale-105 duration-300"
           >
             Manage Profile
             <img
@@ -36,7 +42,7 @@ const UserPage = () => {
             className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-sky-400 uppercase hover:bg-sky-50 font-semibold hover:border border-sky-400 hover:scale-105 duration-300"
           >
             Sell Apartment
-            <FaPlus className="text-xl" />
+            <FaHouseMedical className="text-xl" />
           </Link>
           <Link
             to={"/manage-my-post"}
@@ -51,6 +57,13 @@ const UserPage = () => {
           >
             Saved Post
             <FaHeartCircleBolt className="text-3xl font-bold" />
+          </Link>
+          <Link
+            to={"/my-appointments"}
+            className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-lime-400 uppercase  font-semibold hover:border border-lime-400 hover:scale-105 duration-300 hover:bg-lime-50"
+          >
+            My Appointments
+            <FaRegCalendarCheck className="text-3xl font-bold" />
           </Link>
         </div>
       </div>

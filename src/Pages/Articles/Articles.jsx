@@ -47,7 +47,7 @@ const Articles = () => {
                   to={`/blogs/${b._id}`}
                   className="bg-blue-50 border border-white hover:border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400 rounded-full py-1 px-2 text-xs items-center flex gap-2"
                 >
-                  Read more <FaArrowRight className="text-sm" />
+                  Read <FaArrowRight className="text-sm" />
                 </Link>
               </div>
             </div>
