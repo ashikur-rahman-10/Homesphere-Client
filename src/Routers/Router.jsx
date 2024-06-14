@@ -18,6 +18,8 @@ import ManageBlogs from "../Pages/Dashboard/AdminDashboard/ManageBlogs/ManageBlo
 import Article from "../Pages/Articles/Article";
 import notFound from "../assets/404.gif";
 import { FaHome } from "react-icons/fa";
+import UserPage from "../Pages/Dashboard/UserDashboard/UserPage/UserPage";
+import ManageMyPost from "../Pages/Dashboard/UserDashboard/ManageMyPost/ManageMyPost";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,22 @@ const router = createBrowserRouter([
       {
         path: "articles",
         element: <Articles></Articles>,
+      },
+      {
+        path: "/user-dashboard",
+        element: (
+          <PrivateRoute>
+            <UserPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manage-my-post",
+        element: (
+          <PrivateRoute>
+            <ManageMyPost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/apartments/:id",

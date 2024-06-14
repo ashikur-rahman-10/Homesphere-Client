@@ -52,9 +52,21 @@ const ManageBlogs = () => {
   };
 
   const handleDelete = async (id) => {
-    await axiosSecure.delete(`/blogs/${id}`);
-    blogsRefetch();
-    toast.success("Delete Successfully!");
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      await axiosSecure.delete(`/blogs/${id}`);
+      blogsRefetch();
+      toast.success("Delete Successfully!");
+    }
   };
 
   const handleChange = (e) => {
