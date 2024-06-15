@@ -8,7 +8,7 @@ const TermsAndConditionsPage = () => {
     behavior: "smooth",
   });
   return (
-    <div className="container max-w-6xl mx-auto px-4 py-16">
+    <div className="container lg:max-w-6xl md:max-w-4xl mx-auto px-4 py-16">
       <div className="bg-white  px-0 py-6">
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-600">
           Terms and Conditions

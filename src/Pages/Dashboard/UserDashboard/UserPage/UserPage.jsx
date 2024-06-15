@@ -6,7 +6,7 @@ import {
   FaRegCalendarCheck,
 } from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { MdManageHistory } from "react-icons/md";
+import { MdManageHistory, MdOutlineRateReview } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useThisUser from "../../../../Hooks/UseThisUser";
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -64,6 +64,14 @@ const UserPage = () => {
           >
             My Appointments
             <FaRegCalendarCheck className="text-3xl font-bold" />
+          </Link>
+
+          <Link
+            to={"/give-review"}
+            className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-yellow-400 uppercase  font-semibold hover:border border-yellow-400 hover:scale-105 duration-300 hover:bg-yellow-50"
+          >
+            Give Service Review
+            <MdOutlineRateReview className="text-3xl font-bold" />
           </Link>
         </div>
       </div>

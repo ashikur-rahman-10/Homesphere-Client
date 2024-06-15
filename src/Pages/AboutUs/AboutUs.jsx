@@ -19,7 +19,7 @@ const teamMembers = [
     description:
       "Phasellus non magna vel justo ultricies fermentum. Mauris rhoncus.",
     image:
-      "https://i.ibb.co/3TdhPB9/184895977-318076906329073-1836864424234942095-n.jpg",
+      "https://i.ibb.co/ZKq9phf/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg",
   },
   {
     name: "Sarah Johnson",
@@ -49,7 +49,7 @@ const AboutUsPage = () => {
   });
 
   return (
-    <div className="container max-w-6xl mx-auto px-4 py-16">
+    <div className="container lg:max-w-6xl md:max-w-4xl mx-auto px-4 py-16">
       <div className="bg-white  px-0 py-6">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
           About Homesphare

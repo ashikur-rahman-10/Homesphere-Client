@@ -24,6 +24,7 @@ import SearchPage from "../Pages/SearchPage/SearchPage";
 import MySavedPost from "../Pages/Dashboard/UserDashboard/MySavedPost/MySavedPost";
 import TermsAndConditionsPage from "../Pages/TearmsAndConditions/TermsAndConditionsPage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import GiveReview from "../Pages/Dashboard/UserDashboard/GiveReview/GiveReview";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,14 @@ const router = createBrowserRouter([
       {
         path: "/search/:searchTerm",
         element: <SearchPage />,
+      },
+      {
+        path: "/give-review",
+        element: (
+          <PrivateRoute>
+            <GiveReview />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/user-dashboard",
