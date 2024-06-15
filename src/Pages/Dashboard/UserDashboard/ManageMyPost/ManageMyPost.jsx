@@ -152,11 +152,11 @@ const ManageMyPost = () => {
   const getStatusClass = (status) => {
     switch (status) {
       case "approved":
-        return "bg-green-100 text-green-700";
+        return "bg-green-100 text-green-600";
       case "pending":
-        return "bg-yellow-100 text-yellow-700";
+        return "bg-yellow-100 text-yellow-500";
       case "sold":
-        return "bg-red-100 text-red-700";
+        return "bg-red-100 text-red-600";
       default:
         return "";
     }
@@ -241,17 +241,14 @@ const ManageMyPost = () => {
               <div className="p-4 space-y-2 text-sm">
                 <p className="line-clamp-2 h-10">{a.title}</p>
                 <div className="flex justify-between items-center">
-                  <select
-                    onChange={(e) => handleStatusChange(a._id, e.target.value)}
-                    value={a.postStatus}
-                    className={`py-1 text-xs border rounded-md ${getStatusClass(
+                  <p
+                    className={`py-1 px-2 text-xs border rounded-md ${getStatusClass(
                       a.postStatus
                     )}`}
                   >
-                    <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="sold">Sold</option>
-                  </select>
+                    {" "}
+                    {a.postStatus}
+                  </p>
 
                   <button
                     onClick={() => handleDelete(a._id)}
