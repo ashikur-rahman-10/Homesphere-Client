@@ -21,6 +21,7 @@ import { FaHome } from "react-icons/fa";
 import UserPage from "../Pages/Dashboard/UserDashboard/UserPage/UserPage";
 import ManageMyPost from "../Pages/Dashboard/UserDashboard/ManageMyPost/ManageMyPost";
 import SearchPage from "../Pages/SearchPage/SearchPage";
+import MySavedPost from "../Pages/Dashboard/UserDashboard/MySavedPost/MySavedPost";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageMyPost />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/saved-post",
+        element: (
+          <PrivateRoute>
+            <MySavedPost />
           </PrivateRoute>
         ),
       },

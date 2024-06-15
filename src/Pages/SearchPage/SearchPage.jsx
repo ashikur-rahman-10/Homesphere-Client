@@ -53,15 +53,17 @@ const SearchPage = () => {
   // Filter apartments based on search term, price range, size, and bedrooms
   const searchResults = approvedApartments.filter(
     (a) =>
-      a.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.location?.toLowerCase().includes(searchTerm.toLowerCase())
+      a?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a?.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a?.keywords?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const filteredApartments = searchResults.filter((a) => {
     const matchesSearchTerm =
       !searchTerm ||
       a.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.location?.toLowerCase().includes(searchTerm.toLowerCase());
+      a.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a?.keywords?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesPrice = a.price >= priceRange[0] && a.price <= priceRange[1];
 

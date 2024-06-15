@@ -18,12 +18,12 @@ const TopBanner = () => {
   return (
     <div className="flex justify-between md:flex-row flex-col-reverse relative lg:h-[690px]  mx-auto w-full">
       <div className="md:w-[700px] flex items-center justify-start lg:pl-32 md:pl-10 bg-gradient-to-br from-[#aef7fa] via-white to-white gradientColorStopPositions-33">
-        <div className="max-w-[400px]  space-y-5 px-4">
-          <h1 className="text-3xl md:text-4xl text-[#1B1C57] uppercase font-bold py-3">
+        <div className="max-w-[420px]  space-y-5 px-4">
+          <h1 className="text-3xl w-full md:text-4xl text-[#1B1C57] uppercase font-bold py-3">
             find the place to live{" "}
             <span className="text-accent">your dreams</span> easily here
           </h1>
-          <p className="text-[#626687]">
+          <p className="text-[#626687] w-[320px]">
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>

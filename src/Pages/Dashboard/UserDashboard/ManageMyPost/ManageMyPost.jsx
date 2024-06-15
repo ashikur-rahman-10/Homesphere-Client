@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaBed, FaRuler } from "react-icons/fa6";
 import { GiBathtub } from "react-icons/gi";
 import { MdBalcony, MdOutlineGarage } from "react-icons/md";
+import CustomLoader from "../../../../Components/CustomLoader/CustomLoader";
 
 const ManageMyPost = () => {
   const [axiosSecure] = UseAxiosSecure();
@@ -187,12 +188,19 @@ const ManageMyPost = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CustomLoader />;
   }
 
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
+
+  // Scroll to top
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 
   return (
     <div className="max-w-7xl px-4 min-h-screen py-14 mx-auto">
