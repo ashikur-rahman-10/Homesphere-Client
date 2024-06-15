@@ -22,6 +22,8 @@ import UserPage from "../Pages/Dashboard/UserDashboard/UserPage/UserPage";
 import ManageMyPost from "../Pages/Dashboard/UserDashboard/ManageMyPost/ManageMyPost";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import MySavedPost from "../Pages/Dashboard/UserDashboard/MySavedPost/MySavedPost";
+import TermsAndConditionsPage from "../Pages/TearmsAndConditions/TermsAndConditionsPage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
       {
         path: "/apartments",
         element: <Apartments />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/terms-conditions",
+        element: <TermsAndConditionsPage />,
       },
       {
         path: "/articles",

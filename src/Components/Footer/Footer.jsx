@@ -61,10 +61,21 @@ const Footer = () => {
               <FaPhone /> +880 1644976***
             </li>
             <li className="flex items-center gap-3">
-              <FaEnvelope /> homesphere@info.com
+              <FaEnvelope /> info@homesphare.com
             </li>
             <li className="flex items-center gap-3">
               <FaLocationDot /> Avenue 5,Mirpur 10,Dhaka
+            </li>
+          </ul>
+        </div>
+        <div className="text-[#626687]">
+          <p className="text-transparent font-medium text-xl">something </p>
+          <ul className="space-y-3">
+            <li className="flex items-center gap-3">
+              <Link to={"/terms-conditions"}>Terms and Conditions</Link>
+            </li>
+            <li className="flex items-center gap-3">
+              <Link to={"/about-us"}>About us</Link>
             </li>
           </ul>
         </div>
