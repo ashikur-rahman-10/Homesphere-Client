@@ -13,6 +13,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 
 const UserPage = () => {
   const { thisUser } = useThisUser();
+  const id = thisUser._id;
 
   // Scroll to top
   window.scrollTo({
@@ -27,7 +28,7 @@ const UserPage = () => {
       <div className="min-h-[80vh] w-full flex items-center justify-center">
         <div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-4 ">
           <Link
-            to={"/manage-profile"}
+            to={`/manage-profile/${id}`}
             className=" w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-green-400 uppercase hover:bg-green-50 font-semibold hover:border border-green-400 hover:scale-105 duration-300"
           >
             Manage Profile

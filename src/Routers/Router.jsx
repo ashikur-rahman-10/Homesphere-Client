@@ -25,6 +25,7 @@ import MySavedPost from "../Pages/Dashboard/UserDashboard/MySavedPost/MySavedPos
 import TermsAndConditionsPage from "../Pages/TearmsAndConditions/TermsAndConditionsPage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import GiveReview from "../Pages/Dashboard/UserDashboard/GiveReview/GiveReview";
+import ManageProfile from "../Pages/Dashboard/UserDashboard/ManageProfile/ManageProfile";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <GiveReview />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manage-profile/:id",
+        element: (
+          <PrivateRoute>
+            <ManageProfile />
           </PrivateRoute>
         ),
       },

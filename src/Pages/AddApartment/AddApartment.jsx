@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import UseAdmin from "../../Hooks/UseAdmin";
 import useThisUser from "../../Hooks/UseThisUser";
+import { useNavigate } from "react-router-dom";
+import CustomLoader from "../../Components/CustomLoader/CustomLoader";
 
 const AddApartment = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -10,6 +12,7 @@ const AddApartment = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const { admin } = UseAdmin();
   const { thisUser } = useThisUser();
+  const navigate = useNavigate();
 
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_HOSTING_KEY
@@ -125,6 +128,7 @@ const AddApartment = () => {
           showConfirmButton: false,
           timer: 3000,
         });
+        navigate("/");
         reset();
       } else {
         const errorResponse = await response.json();
@@ -144,200 +148,224 @@ const AddApartment = () => {
     }
   };
 
+  if (!thisUser) {
+    return <CustomLoader />;
+  }
+
   return (
     <div className="flex items-center justify-center min-h-[100vh] w-full px-4  md:py-1 text-xs z-0 ">
-      <form
-        className="w-full max-w-2xl border px-6 py-12 md:p-12 rounded-xl shadow-md space-y-5"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <h1 className="text-3xl text-center text-gray-500 pb-5">
-          Sell Apartment
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="title">
-              Title
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Title"
-              {...register("title", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="thumbnail">
-              Thumbnails
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="file"
-              id="thumbnail"
-              name="thumbnail"
-              {...register("thumbnail", { required: true })}
-              required
-              multiple
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="floorPlan">
-              Floor Plan
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="file"
-              id="floorPlan"
-              name="floorPlan"
-              {...register("floorPlan", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="bedroom">
-              Number of Beds
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
-              id="bedroom"
-              name="bedroom"
-              placeholder="Number of beds"
-              {...register("bedroom", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="washroom">
-              Number of Washrooms
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
-              id="washroom"
-              name="washroom"
-              placeholder="Number of washrooms"
-              {...register("washroom", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="size">
-              Area (SqFt)
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
-              id="size"
-              name="size"
-              placeholder="Area (SqFt)"
-              {...register("size", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="garages">
-              Garages
-            </label>
-            <select
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              id="garages"
-              name="garages"
-              {...register("garages", { required: true })}
-              required
+      {thisUser && (!thisUser.address || !thisUser.nidNumber) ? (
+        <div className="w-full h-screen fixed top-0 z-40 bg-white flex items-center justify-center ">
+          <div className="text-center space-y-4">
+            <p className="text-base text-gray-500">
+              Please update your Info to continue
+            </p>
+            <button
+              onClick={() => {
+                const thisUserID = thisUser._id;
+                navigate(`/manage-profile/${thisUserID}`);
+              }}
+              className="bg-blue-600 rounded-md px-4 py-2 text-white hover:bg-blue-400 duration-500 cursor-pointer"
             >
-              <option value="">Select number of garages</option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="balcony">
-              Balcony
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
-              id="balcony"
-              name="balcony"
-              placeholder="Balcony"
-              {...register("balcony", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="price">
-              Price
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="text"
-              id="price"
-              name="price"
-              placeholder="Price"
-              {...register("price", { required: true })}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="location">
-              Location
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="text"
-              id="location"
-              name="location"
-              placeholder="Location"
-              {...register("location", { required: true })}
-              required
-            />
-          </div>
-
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="buildYear">
-              Build Year
-            </label>
-            <input
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              type="number"
-              id="buildYear"
-              name="buildYear"
-              placeholder="Build Year"
-              {...register("buildYear", { required: true })}
-              required
-            />
-          </div>
-
-          <div className="w-full">
-            <label className="block mb-2 text-gray-700" htmlFor="details">
-              Details
-            </label>
-            <textarea
-              className="border border-accent rounded-md px-4 py-[6px] w-full"
-              id="details"
-              name="details"
-              placeholder="Details"
-              rows="3"
-              {...register("details", { required: true })}
-              required
-            ></textarea>
+              Update Info
+            </button>
           </div>
         </div>
+      ) : (
+        <form
+          className="w-full max-w-2xl border px-6 py-12 md:p-12 rounded-xl shadow-md space-y-5"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h1 className="text-3xl text-center text-gray-500 pb-5">
+            Sell Apartment
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="title">
+                Title
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Title"
+                {...register("title", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="thumbnail">
+                Thumbnails
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="file"
+                id="thumbnail"
+                name="thumbnail"
+                {...register("thumbnail", { required: true })}
+                required
+                multiple
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="floorPlan">
+                Floor Plan
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="file"
+                id="floorPlan"
+                name="floorPlan"
+                {...register("floorPlan", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="bedroom">
+                Number of Beds
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="number"
+                id="bedroom"
+                name="bedroom"
+                placeholder="Number of beds"
+                {...register("bedroom", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="washroom">
+                Number of Washrooms
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="number"
+                id="washroom"
+                name="washroom"
+                placeholder="Number of washrooms"
+                {...register("washroom", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="size">
+                Area (SqFt)
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="number"
+                id="size"
+                name="size"
+                placeholder="Area (SqFt)"
+                {...register("size", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="garages">
+                Garages
+              </label>
+              <select
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                id="garages"
+                name="garages"
+                {...register("garages", { required: true })}
+                required
+              >
+                <option value="">Select number of garages</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="balcony">
+                Balcony
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="number"
+                id="balcony"
+                name="balcony"
+                placeholder="Balcony"
+                {...register("balcony", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="price">
+                Price
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="text"
+                id="price"
+                name="price"
+                placeholder="Price"
+                {...register("price", { required: true })}
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="location">
+                Location
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Location"
+                {...register("location", { required: true })}
+                required
+              />
+            </div>
 
-        <div className="w-full flex items-center justify-center text-center">
-          <input
-            className="border border-accent rounded-full px-4 py-2 w-full text-white bg-accent hover:bg-white hover:text-accent cursor-pointer hover:outline outline-accent"
-            type="submit"
-            value={isSubmitting ? "Submitting..." : "Submit"}
-            disabled={isSubmitting}
-          />
-        </div>
-      </form>
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="buildYear">
+                Build Year
+              </label>
+              <input
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                type="number"
+                id="buildYear"
+                name="buildYear"
+                placeholder="Build Year"
+                {...register("buildYear", { required: true })}
+                required
+              />
+            </div>
+
+            <div className="w-full">
+              <label className="block mb-2 text-gray-700" htmlFor="details">
+                Details
+              </label>
+              <textarea
+                className="border border-accent rounded-md px-4 py-[6px] w-full"
+                id="details"
+                name="details"
+                placeholder="Details"
+                rows="3"
+                {...register("details", { required: true })}
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="w-full flex items-center justify-center text-center">
+            <input
+              className="border border-accent rounded-full px-4 py-2 w-full text-white bg-accent hover:bg-white hover:text-accent cursor-pointer hover:outline outline-accent"
+              type="submit"
+              value={isSubmitting ? "Submitting..." : "Submit"}
+              disabled={isSubmitting}
+            />
+          </div>
+        </form>
+      )}
+
       {isSubmitting && (
         <div className="fixed z-50 bg-white -top-4 min-h-screen w-full flex items-center justify-center mt-4 px-10">
           <div className="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
