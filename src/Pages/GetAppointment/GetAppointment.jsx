@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useThisUser from "../../Hooks/UseThisUser";
-import { useParams } from "react-router-dom";
-import useAxiosSecure from "../../Hooks/UseAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
 
 const GetAppointment = () => {
   const { id } = useParams();
@@ -15,6 +13,8 @@ const GetAppointment = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookedTimeSlots, setBookedTimeSlots] = useState([]);
   const { thisUser } = useThisUser();
+
+  const navigate = useNavigate();
 
   const dates = [
     new Date(Date.now() + 86400000), // Tomorrow
@@ -66,6 +66,7 @@ const GetAppointment = () => {
       date: selectedDate.toDateString(),
       timeSlot: selectedTimeSlot,
       bookingsFor: id,
+      appointmentStatus: "To Visited",
     };
 
     try {
@@ -88,6 +89,7 @@ const GetAppointment = () => {
           timer: 3000,
         });
         reset();
+        navigate(`/apartments/${id}`);
         setSelectedTimeSlot(null);
       } else {
         const errorResponse = await response.json();

@@ -260,7 +260,7 @@ const ApartmentDetails = () => {
             </button>
           ) : (
             <div className="py-6 w-full flex gap-10">
-              {!findFav && (
+              {!findFav && apartment?.postStatus == "approved" && (
                 <button
                   onClick={() => {
                     hanedleFavorite(`${_id}`);
@@ -272,21 +272,26 @@ const ApartmentDetails = () => {
                 </button>
               )}
 
-              <Link
-                to={`/get-appointment/${_id}`}
-                className="flex items-center gap-2 text-xs md:text-sm bg-yellow-50 px-4 py-1 rounded-md text-yellow-400 uppercase outline outline-yellow-100 hover:bg-yellow-400 hover:text-white duration-500"
-              >
-                <FaRegCalendarAlt /> Book Appointment
-              </Link>
+              {apartment?.postStatus == "approved" && (
+                <Link
+                  to={`/get-appointment/${_id}`}
+                  className="flex items-center gap-2 text-xs md:text-sm bg-yellow-50 px-4 py-1 rounded-md text-yellow-400 uppercase outline outline-yellow-100 hover:bg-yellow-400 hover:text-white duration-500"
+                >
+                  <FaRegCalendarAlt /> Book Appointment
+                </Link>
+              )}
             </div>
           )}
         </div>
       </div>
-      <div className="pb-16">
+      <div className="pb-16 px-4">
         <p className="text-xl pb-4">
           BDT<span className="text-3xl"> {formatPrice(price)} </span>
         </p>
-        <p className="text-[#757575]">{details}</p>
+        <pre className="text-[#757575] whitespace-pre-wrap font-sans">
+          {details}
+        </pre>
+        <h2 className="py-6 text-xl text-gray-600 underline">Floor Plan:</h2>
         <img className="pt-10 w-full px-4" src={floorPlan} alt="" />
       </div>
       {editingPost && (

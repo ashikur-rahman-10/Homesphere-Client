@@ -107,8 +107,6 @@ const AddApartment = () => {
       soldBy: { name, email, photoURL, role }, // Include only necessary properties
     };
 
-    console.log(apartment);
-
     try {
       const response = await fetch(
         "https://abacus-realty-server.vercel.app/apartments",

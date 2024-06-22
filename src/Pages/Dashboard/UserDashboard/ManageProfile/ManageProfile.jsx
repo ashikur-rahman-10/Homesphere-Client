@@ -102,9 +102,9 @@ const ManageProfile = () => {
           <p className="text-sm">
             <strong>Phone:</strong> {phone}
           </p>
-          <p className="text-sm">
+          {/* <p className="text-sm">
             <strong>Gender:</strong> {gender}
-          </p>
+          </p> */}
           <p className="text-sm">
             <strong>NID Number:</strong> {nidNumber}
           </p>

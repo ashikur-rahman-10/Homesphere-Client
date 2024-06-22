@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
+import { FcCalendar, FcHome, FcNews, FcPlus, FcSettings } from "react-icons/fc";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdManageHistory, MdOutlineAddHomeWork } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -20,28 +21,35 @@ const AdminPage = () => {
           className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-sky-400 uppercase hover:bg-slate-50 font-semibold hover:border border-sky-400 hover:scale-105 duration-300"
         >
           Add Blog
-          <FaPlus className="text-xl" />
+          <FcPlus className="text-3xl" />
         </Link>
         <Link
           to={"manage-blogs"}
           className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-blue-600 uppercase hover:bg-slate-50 font-semibold hover:border border-blue-600 hover:scale-105 duration-300"
         >
           Manage Blogs
-          <IoNewspaperOutline className="text-3xl font-bold" />
+          <FcNews className="text-3xl font-bold" />
         </Link>
         <Link
           to={"/add-apartment"}
           className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-sky-400 uppercase hover:bg-sky-50 font-semibold hover:border border-sky-400 hover:scale-105 duration-300"
         >
           Sell Apartment
-          <MdOutlineAddHomeWork className="text-xl" />
+          <FcHome className="text-3xl" />
         </Link>
         <Link
           to={"manage-post"}
-          className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-yellow-400 uppercase hover:bg-slate-50 font-semibold hover:border border-yellow-400 hover:scale-105 duration-300"
+          className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-yellow-400 uppercase hover:bg-yellow-50 font-semibold hover:border border-yellow-400 hover:scale-105 duration-300"
         >
           Manage Post
-          <MdManageHistory className="text-3xl font-bold" />
+          <FcSettings className="text-3xl font-bold" />
+        </Link>
+        <Link
+          to={"manage-appointments"}
+          className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-green-400 uppercase hover:bg-green-50 font-semibold hover:border border-green-400 hover:scale-105 duration-300 text-center px-4"
+        >
+          Manage Appointment
+          <FcCalendar className="text-3xl font-bold" />
         </Link>
       </div>
     </div>

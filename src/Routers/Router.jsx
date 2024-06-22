@@ -26,6 +26,7 @@ import TermsAndConditionsPage from "../Pages/TearmsAndConditions/TermsAndConditi
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import GiveReview from "../Pages/Dashboard/UserDashboard/GiveReview/GiveReview";
 import ManageProfile from "../Pages/Dashboard/UserDashboard/ManageProfile/ManageProfile";
+import ManageAppointments from "../Pages/Dashboard/AdminDashboard/ManageAppointments/ManageAppointments";
 
 const router = createBrowserRouter([
   {
@@ -183,6 +184,10 @@ const router = createBrowserRouter([
       {
         path: "manage-blogs",
         element: <ManageBlogs />,
+      },
+      {
+        path: "manage-appointments",
+        element: <ManageAppointments />,
       },
     ],
   },
