@@ -119,7 +119,10 @@ const ManageAppointments = () => {
             (apartment) => apartment._id === a.bookingsFor
           );
           return (
-            <div key={a._id} className="w-fit mx-auto border rounded-2xl">
+            <div
+              key={a._id}
+              className="w-fit mx-auto border rounded-2xl shadow-md"
+            >
               <div className="p-4">
                 <p className="flex items-center gap-2 text-sm text-gray-500">
                   <FcBusinessman className="text-xl" /> {a.name}
