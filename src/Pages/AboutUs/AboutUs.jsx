@@ -10,23 +10,20 @@ const teamMembers = [
     role: "Real Estate Agent",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida interdum justo, eget vehicula lorem.",
-    image:
-      "https://i.ibb.co/K24mKTc/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-we.jpg",
+    image: "https://i.ibb.co/N3h3PJC/4b58fdd3-e9da-4b9f-b608-59c22ec03d05.jpg",
   },
   {
     name: "Jane Smith",
     role: "Property Manager",
     description:
       "Phasellus non magna vel justo ultricies fermentum. Mauris rhoncus.",
-    image:
-      "https://i.ibb.co/ZKq9phf/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg",
+    image: "https://i.ibb.co/n6CNcF7/a222fff7.jpg",
   },
   {
     name: "Sarah Johnson",
     role: "Investment Advisor",
     description: "Integer sed est in lorem porta feugiat vel sed nisl.",
-    image:
-      "https://i.ibb.co/SKGX99q/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg",
+    image: "https://i.ibb.co/PT00qtS/88f77af2-0419-4838-a08e-c8fe572baf76.jpg",
   },
 ];
 

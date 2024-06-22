@@ -27,6 +27,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import GiveReview from "../Pages/Dashboard/UserDashboard/GiveReview/GiveReview";
 import ManageProfile from "../Pages/Dashboard/UserDashboard/ManageProfile/ManageProfile";
 import ManageAppointments from "../Pages/Dashboard/AdminDashboard/ManageAppointments/ManageAppointments";
+import MyAppointment from "../Pages/Dashboard/UserDashboard/MyAppointment/MyAppointment";
 
 const router = createBrowserRouter([
   {
@@ -145,6 +146,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <div className="pt-12">
               <AddApartment />
+            </div>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-appointments",
+        element: (
+          <PrivateRoute>
+            <div className="pt-12">
+              <MyAppointment />
             </div>
           </PrivateRoute>
         ),
