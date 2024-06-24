@@ -4,6 +4,7 @@ import ApartmentSection from "./ApartmentSection/ApartmentSection";
 import Articles from "../Articles/Articles";
 import GiveReview from "../Dashboard/UserDashboard/GiveReview/GiveReview";
 import ReviewsPage from "../ReviewsPage/ReviewsPage";
+import WhyChooseUs from "../WhyChooseUS/WhyChooseUs";
 
 const Home = () => {
   useEffect(() => {
@@ -16,7 +17,8 @@ const Home = () => {
   return (
     <div>
       <TopBanner></TopBanner>
-      <ApartmentSection></ApartmentSection>
+      <ApartmentSection />
+      <WhyChooseUs />
       <ReviewsPage />
       <Articles />
     </div>

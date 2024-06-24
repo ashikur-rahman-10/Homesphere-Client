@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import UseApartment from "../../Hooks/UseApartment";
 import CustomLoader from "../../Components/CustomLoader/CustomLoader";
-import ApartmentCard from "../../Components/ApartmentCard/ApartmentCard";
+import ApartmentCardSkeleton from "../../Components/ApartmentCardSkeleton/ApartmentCardSkeleton";
+
+// Lazy load the ApartmentCard component
+const ApartmentCard = lazy(() =>
+  import("../../Components/ApartmentCard/ApartmentCard")
+);
 
 const Apartments = () => {
   const { apartments, apartmentsRefetch } = UseApartment();
@@ -46,9 +51,11 @@ const Apartments = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16 w-fit mx-auto">
-        {sortedApartments.map((a) => (
-          <ApartmentCard key={a._id} apartment={a} />
-        ))}
+        <Suspense fallback={<CustomLoader />}>
+          {sortedApartments.map((a) => (
+            <ApartmentCard key={a._id} apartment={a} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );
