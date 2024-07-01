@@ -85,7 +85,7 @@ const ManageProfile = () => {
   if (!thisUser) return null; // or a loading spinner
 
   return (
-    <div className="container mx-auto p-6 py-16">
+    <div className="container w-fit mx-auto p-6 py-16">
       <div className="flex flex-col items-center pt-20 mb-6 space-y-4 md:flex-row md:space-y-0 md:space-x-6">
         <img
           src={photoURL}
@@ -117,7 +117,7 @@ const ManageProfile = () => {
         </div>
       </div>
       <button
-        className="bg-blue-500 text-white text-xs py-2 px-4 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+        className="bg-blue-500 text-white text-xs py-2 px-4 ml-12  rounded-lg hover:bg-blue-700 flex items-center gap-2"
         type="button"
         onClick={handleEditClick}
       >
