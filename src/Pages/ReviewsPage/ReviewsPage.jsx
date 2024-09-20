@@ -80,7 +80,7 @@ const ReviewsPage = () => {
                 <img
                   src={review.image}
                   alt={review.name}
-                  className="w-12 mask mask-circle "
+                  className="w-12 avatar min-h-12 h-fit mask mask-circle "
                 />
                 <div>
                   <h2 className="text-lg font-semibold">{review.name}</h2>

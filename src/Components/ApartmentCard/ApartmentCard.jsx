@@ -63,18 +63,12 @@ const ApartmentCard = ({ apartment }) => {
           </p>
         </div>
         <div className="flex justify-between items-center">
-          {/* <div className="flex items-center gap-2  bg-sky-100 rounded-full">
-            <div className="bg-slate-200 p-2 rounded-full hover:bg-slate-100">
-              <FaThumbsUp className="text-xl hover:text-sky-600 text-sky-400" />
-            </div>
-            {impression > 0 && (
-              <span cl
-              assName="text-xs pr-3">{impression}</span>
-            )}
-           
-          </div> */}
           <div className="flex items-center gap-2 ">
-            <img className="w-8 rounded-full" src={soldBy?.photoURL} alt="" />
+            <img
+              className="w-8 mask mask-circle "
+              src={soldBy?.photoURL}
+              alt=""
+            />
             <p className="text-xs w-24 overflow-hidden">{soldBy?.name}</p>
           </div>
           <p className="text-lg font-medium"> {formatPrice(price)} Tk</p>
