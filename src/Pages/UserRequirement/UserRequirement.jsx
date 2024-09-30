@@ -167,9 +167,9 @@ const UserRequirement = () => {
       <div className="flex flex-col lg:flex-row pt-4">
         <div className=" ">
           <div
-            className={`bg-gray-200 lg:w-80 w-fit h-[91vh] p-4 absolute lg:relative duration-500 z-40 lg:z-10 ${
+            className={`bg-gray-200 lg:w-80 w-fit h-[91vh] p-4 absolute lg:relative duration-500 z-10 lg:z-10 ${
               showFilter
-                ? " left-0 top-16 md:-top-2 fixed"
+                ? " left-0 top-16 lg:-top-2 fixed"
                 : "-left-[311px] lg:left-0"
             }`}
           >
@@ -207,9 +207,7 @@ const UserRequirement = () => {
                           onChange={() => handleSizeChange(size)}
                           className="mr-2"
                         />
-                        <label htmlFor={size}>
-                          {size.replace("-", " - ")} sqft
-                        </label>
+                        <label>{size.replace("-", " - ")} sqft</label>
                       </div>
                     ))}
                   </div>
@@ -228,7 +226,7 @@ const UserRequirement = () => {
                           onChange={() => handleBedroomChange(bed)}
                           className="mr-2 "
                         />
-                        <label htmlFor={bed}>{bed}</label>
+                        <label>{bed}</label>
                       </div>
                     ))}
                   </div>
@@ -247,7 +245,7 @@ const UserRequirement = () => {
                           onChange={() => handleWashroomChange(washroom)}
                           className="mr-2 "
                         />
-                        <label htmlFor={washroom}>{washroom}</label>
+                        <label>{washroom}</label>
                       </div>
                     ))}
                   </div>
@@ -272,7 +270,7 @@ const UserRequirement = () => {
                           }
                           className="mr-2"
                         />
-                        <label htmlFor={garage}>{garage}</label>
+                        <label>{garage}</label>
                       </div>
                     ))}
                   </div>
@@ -307,14 +305,20 @@ const UserRequirement = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                   const requirement = e.target.req.value;
-                  localStorage.setItem("userRequirement", requirement);
-                  e.target.remove();
-                  toast.success("Thanks, Submitted Successfully!");
+                  console.log(requirement.length);
+                  if (requirement.length < 4) {
+                    toast.error("Can't be empty");
+                    return;
+                  } else {
+                    localStorage.setItem("userRequirement", requirement);
+                    e.target.remove();
+                    toast.success("Thanks, Submitted Successfully!");
+                  }
                 }}
                 className="border rounded-full"
               >
                 <input
-                  className="w-72 py-2 border rounded-l-full px-4"
+                  className="max-w-72  py-2 border rounded-l-full px-4"
                   name="req"
                   placeholder="Give your requirements"
                   type="text"
@@ -329,7 +333,7 @@ const UserRequirement = () => {
               <div className="w-full flex justify-center pt-4">
                 <form
                   onSubmit={handleSearch}
-                  className="w-full max-w-80 lg:w-fit relative"
+                  className="w-full max-w-72 lg:w-fit relative"
                 >
                   <input
                     type="text"
@@ -337,7 +341,7 @@ const UserRequirement = () => {
                     name="searchTerm"
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search your desired apartment"
-                    className=" w-80 border focus:outline-none outline-accent rounded-full py-2 pl-4 text-sm"
+                    className=" w-72 border focus:outline-none outline-accent rounded-full py-2 pl-4 text-sm"
                   />
                   <button
                     type="submit"

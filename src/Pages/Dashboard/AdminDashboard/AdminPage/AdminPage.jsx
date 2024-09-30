@@ -1,5 +1,6 @@
 import React from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaUserAlt } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa6";
 import { FcCalendar, FcHome, FcNews, FcPlus, FcSettings } from "react-icons/fc";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdManageHistory, MdOutlineAddHomeWork } from "react-icons/md";
@@ -50,6 +51,13 @@ const AdminPage = () => {
         >
           Manage Appointment
           <FcCalendar className="text-3xl font-bold" />
+        </Link>
+        <Link
+          to={"manage-users"}
+          className="w-44 md:w-52 h-36 bg-white rounded-lg shadow-md flex flex-col-reverse items-center justify-center gap-2 text-purple-400 uppercase hover:bg-purple-50 font-semibold hover:border border-purple-400 hover:scale-105 duration-300 text-center px-4"
+        >
+          Manage Users
+          <FaUsers className="text-3xl font-bold" />
         </Link>
       </div>
     </div>

@@ -29,6 +29,7 @@ import ManageProfile from "../Pages/Dashboard/UserDashboard/ManageProfile/Manage
 import ManageAppointments from "../Pages/Dashboard/AdminDashboard/ManageAppointments/ManageAppointments";
 import MyAppointment from "../Pages/Dashboard/UserDashboard/MyAppointment/MyAppointment";
 import UserRequirement from "../Pages/UserRequirement/UserRequirement";
+import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUser/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -204,6 +205,10 @@ const router = createBrowserRouter([
       {
         path: "manage-appointments",
         element: <ManageAppointments />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
       },
     ],
   },
