@@ -32,10 +32,10 @@ const ApartmentCard = ({ apartment }) => {
   return (
     <Link
       to={`/apartments/${_id}`}
-      className="shadow-lg rounded-2xl lg:w-80 w-full"
+      className="shadow-xl  rounded-2xl border md:w-80 w-full"
     >
       <img
-        className="md:w-[320px] lg:w-80 w-full h-48 rounded-t-2xl"
+        className=" md:w-80 w-full h-48 rounded-t-2xl"
         src={thumbnails[0]}
         alt={title}
       />
