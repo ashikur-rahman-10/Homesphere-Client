@@ -23,10 +23,13 @@ const GoogleLogin = () => {
           role: "buyer",
         };
 
+        const token = localStorage.getItem("access-token");
+
         fetch("https://abacus-realty-server.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : "",
           },
           body: JSON.stringify(savedUser),
         });

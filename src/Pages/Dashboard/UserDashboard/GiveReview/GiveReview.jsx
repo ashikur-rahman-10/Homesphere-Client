@@ -23,7 +23,7 @@ const GiveReview = () => {
 
     try {
       // Send reviewData to your backend for processing/storage
-      console.log(reviewData);
+      const token = localStorage.getItem("access-token");
       // Example: Replace with actual API call
       const response = await fetch(
         "https://abacus-realty-server.vercel.app/reviews",
@@ -31,6 +31,7 @@ const GiveReview = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : "",
           },
           body: JSON.stringify(reviewData),
         }

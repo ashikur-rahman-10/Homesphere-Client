@@ -5,6 +5,7 @@ import UseAdmin from "../../Hooks/UseAdmin";
 import useThisUser from "../../Hooks/UseThisUser";
 import { useNavigate } from "react-router-dom";
 import CustomLoader from "../../Components/CustomLoader/CustomLoader";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const AddApartment = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -13,14 +14,146 @@ const AddApartment = () => {
   const { admin } = UseAdmin();
   const { thisUser } = useThisUser();
   const navigate = useNavigate();
+  const [axiosSecure] = UseAxiosSecure();
 
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_HOSTING_KEY
   }`;
 
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   setUploadProgress(0);
+  //   const {
+  //     title,
+  //     details,
+  //     bedroom,
+  //     washroom,
+  //     garages,
+  //     size,
+  //     location,
+  //     price,
+  //     balcony,
+  //     buildYear,
+  //   } = data;
+  //   const postStatus = admin ? "approved" : "pending";
+
+  //   const imageFiles = data.thumbnail;
+  //   const imageUrls = [];
+
+  //   // Upload images
+  //   for (let i = 0; i < imageFiles.length; i++) {
+  //     const formData = new FormData();
+  //     formData.append("image", imageFiles[i]);
+
+  //     const res = await fetch(imageHostingUrl, {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+
+  //     const imgResponse = await res.json();
+  //     if (imgResponse.success) {
+  //       imageUrls.push(imgResponse.data.display_url);
+  //     } else {
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Failed to upload image. Please try again.",
+  //         timer: 3000,
+  //       });
+  //       setIsSubmitting(false);
+  //       return;
+  //     }
+
+  //     setUploadProgress(((i + 1) / imageFiles.length) * 100);
+  //   }
+
+  //   // Handle floor plan image upload
+  //   const floorPlanFormData = new FormData();
+  //   floorPlanFormData.append("image", data.floorPlan[0]);
+
+  //   const floorPlanRes = await fetch(imageHostingUrl, {
+  //     method: "POST",
+  //     body: floorPlanFormData,
+  //   });
+
+  //   const floorPlanResponse = await floorPlanRes.json();
+  //   let floorPlanUrl = "";
+  //   if (floorPlanResponse.success) {
+  //     floorPlanUrl = floorPlanResponse.data.display_url;
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Failed to upload floor plan. Please try again.",
+  //       timer: 3000,
+  //     });
+  //     setIsSubmitting(false);
+  //     return;
+  //   }
+
+  //   const { name, email, role, photoURL } = thisUser; // Extract only necessary properties
+
+  //   const apartment = {
+  //     title,
+  //     details,
+  //     thumbnails: imageUrls,
+  //     floorPlan: floorPlanUrl,
+  //     bedroom,
+  //     washroom,
+  //     garages,
+  //     size,
+  //     location,
+  //     price,
+  //     postedIn: new Date(),
+  //     impression: 0,
+  //     balcony,
+  //     buildYear,
+  //     postStatus,
+  //     soldBy: { name, email, photoURL, role }, // Include only necessary properties
+  //   };
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://abacus-realty-server.vercel.app/apartments",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Authorization": `Bearer ${yourAuthToken}`,  // Include authorization header
+  //         },
+  //         body: JSON.stringify(apartment),
+  //       }
+  //     );
+
+  //     if (response.ok) {
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: "Apartment added successfully!",
+  //         showConfirmButton: false,
+  //         timer: 3000,
+  //       });
+  //       navigate("/");
+  //       reset();
+  //     } else {
+  //       const errorResponse = await response.json();
+  //       console.error("Server response:", errorResponse);
+  //       throw new Error("Failed to add apartment. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     Swal.fire({
+  //       icon: "error",
+  //       text: error.message,
+  //       timer: 3000,
+  //     });
+  //   } finally {
+  //     setIsSubmitting(false);
+  //     setUploadProgress(0);
+  //   }
+  // };
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setUploadProgress(0);
+
     const {
       title,
       details,
@@ -38,6 +171,7 @@ const AddApartment = () => {
     const imageFiles = data.thumbnail;
     const imageUrls = [];
 
+    // Upload images
     for (let i = 0; i < imageFiles.length; i++) {
       const formData = new FormData();
       formData.append("image", imageFiles[i]);
@@ -86,7 +220,7 @@ const AddApartment = () => {
       return;
     }
 
-    const { name, email, role, photoURL } = thisUser; // Extract only necessary properties
+    const { name, email, role, photoURL } = thisUser;
 
     const apartment = {
       title,
@@ -104,16 +238,19 @@ const AddApartment = () => {
       balcony,
       buildYear,
       postStatus,
-      soldBy: { name, email, photoURL, role }, // Include only necessary properties
+      soldBy: { name, email, photoURL, role },
     };
 
     try {
+      const token = localStorage.getItem("access-token"); // Get token from localStorage
+
       const response = await fetch(
         "https://abacus-realty-server.vercel.app/apartments",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : "", // Set Authorization header if token exists
           },
           body: JSON.stringify(apartment),
         }

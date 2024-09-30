@@ -49,6 +49,8 @@ const AddBlog = () => {
           },
         };
 
+        const token = localStorage.getItem("access-token");
+
         // Replace this URL with the endpoint to save the blog post on your server
         const response = await fetch(
           "https://abacus-realty-server.vercel.app/blogs",
@@ -56,6 +58,7 @@ const AddBlog = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: token ? `Bearer ${token}` : "",
             },
             body: JSON.stringify(newBlogPost),
           }
@@ -90,11 +93,11 @@ const AddBlog = () => {
   });
 
   return (
-    <div className="relative flex justify-center items-center min-h-[90vh]">
-      <div className="absolute inset-0 flex justify-center items-center">
-        <div className="relative bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden">
-          <div className="absolute inset-0 bg-pink-200 transform translate-x-4 translate-y-4 rounded-lg z-0"></div>
-          <div className="relative z-10">
+    <div className="relative flex w-full justify-center items-center min-h-[90vh]">
+      <div className="absolute inset-0 w-full flex justify-center items-center">
+        <div className="relative w-full max-w-[500px] bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden">
+          <div className="absolute inset-0 bg-[#cbf9f4] p-4 transform translate-x-4 translate-y-4 rounded-lg z-0"></div>
+          <div className="relative z-10 p-4">
             <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
               Add a New Blog Post
             </h2>
@@ -103,7 +106,10 @@ const AddBlog = () => {
                 {error}
               </div>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="space-y-4 w-full  max-w-[500px]"
+            >
               <div>
                 <label
                   htmlFor="title"
@@ -115,7 +121,7 @@ const AddBlog = () => {
                   type="text"
                   id="title"
                   {...register("title", { required: "Title is required" })}
-                  className="mt-1 block w-full px-4 py-2 border-b-2 border-black focus:outline-none focus:ring-0 sm:text-sm"
+                  className="mt-1 block w-full max-w-[500px] px-4 py-2 rounded-md border-b-2 border-black focus:outline-none focus:ring-0 sm:text-sm"
                 />
                 {errors.title && (
                   <p className="text-red-600 text-sm">{errors.title.message}</p>
@@ -132,7 +138,7 @@ const AddBlog = () => {
                   id="content"
                   {...register("content", { required: "Content is required" })}
                   rows="4"
-                  className="mt-1 block w-full px-4 py-2 border-b-2 border-black focus:outline-none focus:ring-0 sm:text-sm"
+                  className="mt-1 block w-full px-4 py-2 max-w-[500px] h-40 rounded-md border-b-2 border-black focus:outline-none focus:ring-0 sm:text-sm"
                 />
                 {errors.content && (
                   <p className="text-red-600 text-sm">

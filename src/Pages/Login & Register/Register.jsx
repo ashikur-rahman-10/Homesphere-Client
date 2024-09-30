@@ -51,6 +51,8 @@ const Register = () => {
           const result = await createUser(email, password);
           const loggedUser = result.user;
 
+          const token = localStorage.getItem("access-token");
+
           // Check if user is authenticated
           if (loggedUser) {
             await updateUser(name, imgUrl);
@@ -63,6 +65,7 @@ const Register = () => {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
+                  Authorization: token ? `Bearer ${token}` : "",
                 },
                 body: JSON.stringify(savedUser),
               }

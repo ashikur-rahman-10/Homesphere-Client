@@ -14,6 +14,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../Firebase/Firebase.init";
+import axios from "axios";
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -61,8 +62,27 @@ const AuthProviders = ({ children }) => {
   };
 
   useEffect(() => {
+    // const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    //   setUser(currentUser);
+    //   setLoading(false);
+    // });
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+
+      if (currentUser) {
+        axios
+          .post("https://abacus-realty-server.vercel.app/jwt", {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            if (data.data) {
+              localStorage.setItem("access-token", data.data.token);
+            }
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => {
