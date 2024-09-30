@@ -9,17 +9,20 @@ import {
 import UseApartment from "../../Hooks/UseApartment";
 import Slider from "rc-slider";
 import ApartmentCard from "../../Components/ApartmentCard/ApartmentCard";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { GiBathtub } from "react-icons/gi";
 import { MdBalcony, MdOutlineGarage } from "react-icons/md";
+import { FaArrowCircleDown } from "react-icons/fa";
 
 const UserRequirement = () => {
   const { apartments } = UseApartment();
   const [priceRange, setPriceRange] = useState([1000000, 100000000]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedBedrooms, setSelectedBedrooms] = useState([]);
+  const [selectedWashroom, setSelectedWashroom] = useState([]);
+  const [selectedGarages, setSelectedGarages] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,6 +48,15 @@ const UserRequirement = () => {
     );
   };
 
+  // Handle washroom change
+  const handleWashroomChange = (washroom) => {
+    setSelectedWashroom((prev) =>
+      prev.includes(washroom)
+        ? prev.filter((b) => b !== washroom)
+        : [...prev, washroom]
+    );
+  };
+
   // Handle Price Range change
   const handlePriceRangeChange = (range) => {
     setPriceRange(range);
@@ -58,6 +70,8 @@ const UserRequirement = () => {
     "above 1500",
   ];
   const bedroomOptions = ["2", "3", "4", "5", "above 5"];
+  const washroomOptions = ["1", "2", "3", "4"];
+  const garageOptions = ["1", "2", "3"];
 
   // Filter apartments based on search term, price range, size, and bedrooms
   const filteredApartments = approvedApartments.filter((a) => {
@@ -87,7 +101,29 @@ const UserRequirement = () => {
         return parseInt(a.bedroom) === parseInt(bed);
       });
 
-    return matchesSearchTerm && matchesPrice && matchesSize && matchesBedroom;
+    const matchesWashroom =
+      selectedWashroom.length === 0 ||
+      selectedWashroom.some((washroom) => {
+        return parseInt(a.washroom) === parseInt(washroom);
+      });
+
+    const matchesGarages =
+      selectedGarages.length === 0 ||
+      selectedGarages.some((garage) => {
+        if (garage === "above 3") {
+          return parseInt(a.garages) > 3;
+        }
+        return parseInt(a.garages) === parseInt(garage);
+      });
+
+    return (
+      matchesSearchTerm &&
+      matchesPrice &&
+      matchesSize &&
+      matchesBedroom &&
+      matchesWashroom &&
+      matchesGarages
+    );
   });
 
   // Pagination logic
@@ -110,6 +146,13 @@ const UserRequirement = () => {
     setShowFilter((prev) => !prev);
   };
 
+  //   Submit btn
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setSearchTerm(event.target.searchTerm.value);
+  };
+
   // Scroll to top on load
   useEffect(() => {
     window.scrollTo({
@@ -125,7 +168,9 @@ const UserRequirement = () => {
         <div className=" ">
           <div
             className={`bg-gray-200 lg:w-80 w-fit h-[91vh] p-4 absolute lg:relative duration-500 z-40 lg:z-10 ${
-              showFilter ? " left-0 top-16 fixed" : "-left-[311px] lg:left-0"
+              showFilter
+                ? " left-0 top-16 md:-top-2 fixed"
+                : "-left-[311px] lg:left-0"
             }`}
           >
             <div className="flex relative">
@@ -152,50 +197,98 @@ const UserRequirement = () => {
                   <label className="block mb-2 text-sm font-medium text-gray-700">
                     Size
                   </label>
-                  {sizeOptions.map((size) => (
-                    <div key={size} className="flex items-center mb-2">
-                      <input
-                        type="checkbox"
-                        id={size}
-                        checked={selectedSizes.includes(size)}
-                        onChange={() => handleSizeChange(size)}
-                        className="mr-2"
-                      />
-                      <label htmlFor={size}>
-                        {size.replace("-", " - ")} sqft
-                      </label>
-                    </div>
-                  ))}
+                  <div className="grid grid-cols-2">
+                    {sizeOptions.map((size) => (
+                      <div key={size} className="flex items-center mb-2">
+                        <input
+                          type="checkbox"
+                          id={size}
+                          checked={selectedSizes.includes(size)}
+                          onChange={() => handleSizeChange(size)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={size}>
+                          {size.replace("-", " - ")} sqft
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm font-medium text-gray-700">
                     Number of Bedrooms
                   </label>
-                  {bedroomOptions.map((bed) => (
-                    <div key={bed} className="flex items-center mb-2">
-                      <input
-                        type="checkbox"
-                        id={bed}
-                        checked={selectedBedrooms.includes(bed)}
-                        onChange={() => handleBedroomChange(bed)}
-                        className="mr-2"
-                      />
-                      <label htmlFor={bed}>{bed}</label>
-                    </div>
-                  ))}
+                  <div className="grid grid-cols-3">
+                    {bedroomOptions.map((bed) => (
+                      <div key={bed} className=" mb-2">
+                        <input
+                          type="checkbox"
+                          id={bed}
+                          checked={selectedBedrooms.includes(bed)}
+                          onChange={() => handleBedroomChange(bed)}
+                          className="mr-2 "
+                        />
+                        <label htmlFor={bed}>{bed}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Number of Washroom
+                  </label>
+                  <div className="grid grid-cols-3">
+                    {washroomOptions.map((washroom) => (
+                      <div key={washroom} className=" mb-2">
+                        <input
+                          type="checkbox"
+                          id={washroom}
+                          checked={selectedWashroom.includes(washroom)}
+                          onChange={() => handleWashroomChange(washroom)}
+                          className="mr-2 "
+                        />
+                        <label htmlFor={washroom}>{washroom}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Number of Garages
+                  </label>
+                  <div className="grid grid-cols-3">
+                    {garageOptions.map((garage) => (
+                      <div key={garage} className=" mb-2">
+                        <input
+                          type="checkbox"
+                          id={garage}
+                          checked={selectedGarages.includes(garage)}
+                          onChange={() =>
+                            setSelectedGarages((prev) =>
+                              prev.includes(garage)
+                                ? prev.filter((g) => g !== garage)
+                                : [...prev, garage]
+                            )
+                          }
+                          className="mr-2"
+                        />
+                        <label htmlFor={garage}>{garage}</label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </form>
               <div>
                 {showFilter ? (
                   <p
                     onClick={toggleFilter}
-                    className="fixed top-16 left-72  text-white py-1 text-2xl hover:text-black cursor-pointer bg-slate-200 pr-2 rounded-r-full  lg:hidden"
+                    className="fixed top-16 left-72  text-white py-1 text-2xl hover:text-gray-400 cursor-pointer bg-[#00d7c0] pl-2 rounded-l-full  lg:hidden"
                   >
                     <FaArrowLeft />
                   </p>
                 ) : (
                   <p
-                    className="fixed top-20 left-2 text-gray-300 py-1 text-2xl hover:text-black cursor-pointer bg-slate-200 pr-2 rounded-r-full  lg:hidden"
+                    className="fixed top-20 left-2 text-gray-300 py-1 text-2xl hover:text-gray-400 cursor-pointer bg-[#00d7c0] pr-2 rounded-r-full  lg:hidden"
                     onClick={toggleFilter}
                   >
                     <FaArrowRight />
@@ -209,27 +302,56 @@ const UserRequirement = () => {
         {/* Main Content */}
         <div className="w-full flex justify-end ">
           <div className="px-4 lg:max-w-6xl  w-full">
-            <div className="w-full flex justify-center pt-4">
-              <form className="w-full max-w-80 lg:w-fit relative">
+            <div className="flex flex-col items-center justify-center">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const requirement = e.target.req.value;
+                  localStorage.setItem("userRequirement", requirement);
+                  e.target.remove();
+                  toast.success("Thanks, Submitted Successfully!");
+                }}
+                className="border rounded-full"
+              >
                 <input
+                  className="w-72 py-2 border rounded-l-full px-4"
+                  name="req"
+                  placeholder="Give your requirements"
                   type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search your desired apartment"
-                  className=" w-80 border focus:outline-none outline-accent rounded-full py-2 pl-4 text-sm"
                 />
-                <button
+                <input
+                  className="bg-[#00d7c0] px-2 py-[7px] rounded-r-full border mr-[1px] text-white cursor-pointer hover:bg-[#28857b] duration-300"
                   type="submit"
-                  className="bg-accent absolute z-10 cursor-pointer hover:bg-[#4db6ac] right-[3px] top-[3px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
-                >
-                  <FaMagnifyingGlass />
-                </button>
+                  value={"Submit"}
+                />
               </form>
+
+              <div className="w-full flex justify-center pt-4">
+                <form
+                  onSubmit={handleSearch}
+                  className="w-full max-w-80 lg:w-fit relative"
+                >
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    name="searchTerm"
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search your desired apartment"
+                    className=" w-80 border focus:outline-none outline-accent rounded-full py-2 pl-4 text-sm"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-accent absolute z-10 cursor-pointer hover:bg-[#4db6ac] right-[3px] top-[3px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
+                  >
+                    <FaArrowCircleDown className="text-md" />
+                  </button>
+                </form>
+              </div>
             </div>
             <h1 className="text-center text-xl text-gray-400 py-4">
               Showing Results for: {searchTerm || "All"}
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 pb-16 w-full  lg:px-10 lg:w-fit mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 pb-4 w-full  lg:px-10 lg:w-fit mx-auto">
               {currentItems.length === 0 ? (
                 <h2 className="text-center text-gray-400">
                   No apartments found matching your criteria.
@@ -293,11 +415,11 @@ const UserRequirement = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center gap-4 my-8">
+            <div className="flex justify-center items-center text-xs gap-4 my-8">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="px-4 py-2 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300 disabled:bg-gray-100"
+                className="px-4 py-2 cursor-pointer bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300 disabled:bg-gray-100"
               >
                 Previous
               </button>
@@ -307,7 +429,7 @@ const UserRequirement = () => {
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300 disabled:bg-gray-100"
+                className="px-4 py-2 cursor-pointer bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300 disabled:bg-gray-100"
               >
                 Next
               </button>
