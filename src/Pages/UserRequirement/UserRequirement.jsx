@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UseApartment from "../../Hooks/UseApartment";
-import ApartmentCard from "../../Components/ApartmentCard/ApartmentCard";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import toast, { Toaster } from "react-hot-toast";
+import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight, FaMagnifyingGlass } from "react-icons/fa6";
+import ApartmentCard from "../../Components/ApartmentCard/ApartmentCard";
+import { Toaster } from "react-hot-toast";
 
-const SearchPage = () => {
-  const { searchTerm } = useParams();
+const UserRequirement = () => {
+  const searchTerm = "";
   const { apartments } = UseApartment();
   const navigate = useNavigate();
   const [priceRange, setPriceRange] = useState([1000000, 100000000]);
@@ -113,13 +112,12 @@ const SearchPage = () => {
       behavior: "smooth",
     });
   }, []);
-
   return (
     <div className="w-full mx-auto min-h-screen pt-16">
       <div className="flex flex-col lg:flex-row relative">
         {/* Side Filter Menu */}
         <div
-          className={`bg-gray-200 lg:w-80 w-fit h-[91vh] p-4 absolute lg:relative duration-500 z-40 lg:z-10 ${
+          className={`bg-gray-200 lg:w-80 fixed top-0 w-fit h-[91vh] p-4  lg:relative duration-500 z-40 lg:z-10 ${
             showFilter ? "absolute left-0 " : "-left-[311px] lg:left-0"
           }`}
         >
@@ -229,19 +227,9 @@ const SearchPage = () => {
         </div>
       </div>
 
-      {/* Filter Toggle Button for Mobile/Tablet */}
-      {/* {!showFilter && (
-        <button
-          className="fixed top-20 left-4 bg-accent text-white px-4 py-2 rounded-lg shadow-lg lg:hidden"
-          onClick={toggleFilter}
-        >
-          <FaArrowRight />
-        </button>
-      )} */}
-
       <Toaster />
     </div>
   );
 };
 
-export default SearchPage;
+export default UserRequirement;

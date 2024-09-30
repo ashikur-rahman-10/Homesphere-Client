@@ -28,6 +28,7 @@ import GiveReview from "../Pages/Dashboard/UserDashboard/GiveReview/GiveReview";
 import ManageProfile from "../Pages/Dashboard/UserDashboard/ManageProfile/ManageProfile";
 import ManageAppointments from "../Pages/Dashboard/AdminDashboard/ManageAppointments/ManageAppointments";
 import MyAppointment from "../Pages/Dashboard/UserDashboard/MyAppointment/MyAppointment";
+import UserRequirement from "../Pages/UserRequirement/UserRequirement";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/user-requirement",
+        element: <UserRequirement />,
       },
       {
         path: "/apartments",

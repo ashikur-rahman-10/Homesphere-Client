@@ -68,14 +68,16 @@ const NavigationBar = () => {
           </NavLink>
         </li>
       )}
-      {/* <li>
-        <NavLink
-          to="/add-apartment"
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
-        >
-          Sell
-        </NavLink>
-      </li> */}
+      {!admin && (
+        <li>
+          <NavLink
+            to="/user-requirement"
+            className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          >
+            Requirement
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink
           to="/apartments"

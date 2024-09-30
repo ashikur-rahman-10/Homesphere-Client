@@ -21,6 +21,9 @@ const Home = () => {
       <WhyChooseUs />
       <ReviewsPage />
       <Articles />
+      <div className="block">
+        <GiveReview />
+      </div>
     </div>
   );
 };

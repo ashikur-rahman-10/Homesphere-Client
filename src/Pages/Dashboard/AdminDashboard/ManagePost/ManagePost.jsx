@@ -178,7 +178,7 @@ const ManagePost = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <img
-                      className="w-8 rounded-full"
+                      className="w-8 mask mask-circle"
                       src={a?.soldBy?.photoURL}
                       alt=""
                     />

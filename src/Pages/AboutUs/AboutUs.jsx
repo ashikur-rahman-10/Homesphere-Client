@@ -6,23 +6,24 @@ import "slick-carousel/slick/slick-theme.css";
 // Team member data with specific image URLs
 const teamMembers = [
   {
-    name: "John Doe",
+    name: "Shuraia Ahammed Sristi",
     role: "Real Estate Agent",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida interdum justo, eget vehicula lorem.",
-    image: "https://i.ibb.co/N3h3PJC/4b58fdd3-e9da-4b9f-b608-59c22ec03d05.jpg",
+      "An experienced real estate agent with a proven track record of helping clients find their dream homes. Specializes in residential properties and customer relations.",
+    image: "https://i.ibb.co.com/5rvFktF/1727702285570.png",
   },
   {
-    name: "Jane Smith",
+    name: "Md.Ashikur Rahman",
     role: "Property Manager",
     description:
-      "Phasellus non magna vel justo ultricies fermentum. Mauris rhoncus.",
-    image: "https://i.ibb.co/n6CNcF7/a222fff7.jpg",
+      "Oversees property listings, manages contracts, and ensures smooth transactions for both buyers and sellers. Expertise in property management and client satisfaction.",
+    image: "https://i.ibb.co.com/jJMd7R0/DSC07294.jpg",
   },
   {
-    name: "Sarah Johnson",
+    name: "Sara Hossain",
     role: "Investment Advisor",
-    description: "Integer sed est in lorem porta feugiat vel sed nisl.",
+    description:
+      "Provides tailored investment advice for clients looking to maximize returns in the real estate market. Specializes in long-term investments and portfolio growth.",
     image: "https://i.ibb.co/PT00qtS/88f77af2-0419-4838-a08e-c8fe572baf76.jpg",
   },
 ];
