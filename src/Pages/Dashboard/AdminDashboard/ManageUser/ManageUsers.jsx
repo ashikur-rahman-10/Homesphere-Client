@@ -102,9 +102,7 @@ const ManageUsers = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      {/* <h1 className="text-center text-xl text-gray-500 py-4">
-         users: {filteredUsers.length}
-      </h1> */}
+
       <div className="overflow-x-auto max-w-5xl mx-auto">
         <table className="table table-zebra">
           <thead>
@@ -125,7 +123,7 @@ const ManageUsers = () => {
                 <td className="uppercase text-xs">{u.role}</td>
                 <td className="flex flex-col gap-1 w-[130px]">
                   <Link
-                    to={`/user-details/${u.email}`}
+                    to={`/dashboard/user-details/${u.email}`}
                     className="px-1 py-1 bg-sky-400 text-center hover:bg-sky-600 text-white rounded-full"
                   >
                     Details

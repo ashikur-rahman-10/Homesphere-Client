@@ -10,7 +10,7 @@ const teamMembers = [
     role: "Real Estate Agent",
     description:
       "An experienced real estate agent with a proven track record of helping clients find their dream homes. Specializes in residential properties and customer relations.",
-    image: "https://i.ibb.co.com/5rvFktF/1727702285570.png",
+    image: "https://i.ibb.co.com/vmFxN6C/1727790285186.png",
   },
   {
     name: "Md.Ashikur Rahman",

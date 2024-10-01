@@ -30,6 +30,7 @@ import ManageAppointments from "../Pages/Dashboard/AdminDashboard/ManageAppointm
 import MyAppointment from "../Pages/Dashboard/UserDashboard/MyAppointment/MyAppointment";
 import UserRequirement from "../Pages/UserRequirement/UserRequirement";
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUser/ManageUsers";
+import UserDetails from "../Pages/Dashboard/AdminDashboard/ManageUser/UserDetails";
 
 const router = createBrowserRouter([
   {
@@ -94,7 +95,9 @@ const router = createBrowserRouter([
         path: "/give-review",
         element: (
           <PrivateRoute>
-            <GiveReview />
+            <div className="w-full min-h-screen flex items-center justify-center">
+              <GiveReview />
+            </div>
           </PrivateRoute>
         ),
       },
@@ -209,6 +212,10 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },
+      {
+        path: `user-details/:email`,
+        element: <UserDetails />,
       },
     ],
   },
