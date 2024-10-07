@@ -128,9 +128,9 @@ const NavigationBar = () => {
 
   return (
     <div
-      className={`navbar lg:px-32 my-0 py-0 fixed w-full z-50 transition-all duration-300 ${
+      className={`navbar lg:px-28 my-0 py-0 fixed w-full z-50 transition-all duration-300 ${
         scroll
-          ? "bg-gradient-to-bl from-[#aef7fa] via-white to-white border shadow-md"
+          ? "bg-gradient-to-bl from-[#aef7fa] via-sky-100 to-white border shadow-md"
           : "bg-transparent "
       }`}
     >
@@ -157,7 +157,7 @@ const NavigationBar = () => {
           </button>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content  z-[1] p-2 mt-8 ml-0 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content   z-[1] p-2 mt-8 ml-0 shadow bg-base-100 rounded-box w-52"
           >
             {navOptions}
           </ul>
@@ -167,12 +167,14 @@ const NavigationBar = () => {
             to="/"
             className="btn btn-ghost text-xl rounded-full hover:bg-white bg-opacity-20"
           >
-            <img className="w-52 " src={logo} alt="" />
+            <img className="w-40 " src={logo} alt="" />
           </NavLink>
         </div>
       </div>
       <div className="navbar-end hidden lg:flex w-full">
-        <ul className="menu menu-horizontal px-1 gap-4 z-30">{navOptions}</ul>
+        <ul className="menu menu-horizontal text-sm px-1 gap-2 z-30">
+          {navOptions}
+        </ul>
       </div>
 
       {/* Login Modal */}

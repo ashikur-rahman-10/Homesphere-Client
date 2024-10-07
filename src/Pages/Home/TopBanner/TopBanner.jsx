@@ -27,25 +27,27 @@ const TopBanner = () => {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <form
-            onSubmit={handleSearch}
-            className="max-w-[496px] w-full relative border-2 rounded-full p-[2px] "
-          >
-            <FaLocationDot className="absolute left-2 top-[14px] text-lg text-yellow-500" />
-            <input
-              className=" w-full pl-8 py-3 rounded-full text-sm"
-              placeholder="Search for the location you want!"
-              name="loc"
-              type="text"
-            />
-
-            <button
-              type="submit"
-              className="bg-accent absolute z-10 cursor-pointer hover:bg-[#4db6ac] right-[3px] top-[4px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
+          <div className="pb-10 lg:pb-2">
+            <form
+              onSubmit={handleSearch}
+              className="max-w-[496px] w-full relative border-2 rounded-full p-[2px]"
             >
-              Search <FaMagnifyingGlass />
-            </button>
-          </form>
+              <FaLocationDot className="absolute left-2 top-[14px] text-lg text-yellow-500" />
+              <input
+                className=" w-full pl-8 py-3 rounded-full text-sm"
+                placeholder="Search for the location you want!"
+                name="loc"
+                type="text"
+              />
+
+              <button
+                type="submit"
+                className="bg-accent absolute z-10 cursor-pointer hover:bg-[#4db6ac] right-[3px] top-[4px] flex items-center rounded-full gap-2 py-2 px-4 text-white"
+              >
+                Search <FaMagnifyingGlass />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div className="md:w-[695px] w-full saturate-200">
