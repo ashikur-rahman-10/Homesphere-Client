@@ -17,7 +17,7 @@ const Dashboard = () => {
       <li>
         <NavLink
           to="/"
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          className="px-3 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >
           Home
         </NavLink>
@@ -25,7 +25,7 @@ const Dashboard = () => {
       <li>
         <NavLink
           to="/dashboard"
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          className="px-3 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >
           Dashboard
         </NavLink>
@@ -34,7 +34,7 @@ const Dashboard = () => {
       <li>
         <NavLink
           to="/apartments"
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          className="px-3 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >
           Appartments
         </NavLink>
@@ -42,7 +42,7 @@ const Dashboard = () => {
       <li>
         <NavLink
           to="/articles"
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
+          className="px-3 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline border-white bg-opacity-30"
         >
           Articles
         </NavLink>
@@ -51,7 +51,7 @@ const Dashboard = () => {
       <li>
         <button
           onClick={handleSignout}
-          className="px-4 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline outline-red-400 border-red-400 bg-opacity-30 text-red-500"
+          className="px-3 py-2 rounded-full bg-white hover:bg-opacity-0 border hover:outline outline-red-400 border-red-400 bg-opacity-30 text-red-500"
         >
           Logout
         </button>
@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="navbar lg:px-32 my-0 py-0 fixed w-full z-50 transition-all duration-300 bg-accent">
+      <div className="navbar lg:px-24 my-0 py-0 fixed w-full z-50 transition-all duration-300 bg-accent">
         <div className="lg:navbar-start w-full">
           <div className="dropdown">
             <button
@@ -95,7 +95,7 @@ const Dashboard = () => {
               to="/"
               className="btn btn-ghost text-xl bg-white bg-opacity-80 rounded-full"
             >
-              <img className="w-40 h-10" src={logo} alt="" />
+              <img className="w-36 h-10" src={logo} alt="" />
             </NavLink>
           </div>
         </div>
